@@ -1,0 +1,28 @@
+version: '3.9'
+services:
+  heartbeat:
+    image: docker.elastic.co/beats/heartbeat:$ELASTIC_VERSION
+    container_name: $HEARTBEAT_CONTAINER
+    user: root
+    environment:
+      - ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST
+      - KIBANA_HOST=$KIBANA_HOST
+      - ELASTICSEARCH_USERNAME=$ELASTIC_USER
+      - ELASTICSEARCH_PASSWORD=$ELASTIC_PASSWORD
+	  - STAGE_NAME=$STAGE_NAME
+	configs:
+      - source: heartbeat_container_config
+        target: /usr/share/filebeat/filebeat.yml  
+    volumes:
+    command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
+    networks:
+      - beats
+      
+configs:
+  heartbeat_container_config:
+    file: $ROOT_PATH/$METRICBEAT_CONTAINER_CONFIG:/usr/share/heartbeat/heartbeat.yml
+	  
+networks:
+  beats:
+    external: true
+    name: bridge

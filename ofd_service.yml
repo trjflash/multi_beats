@@ -1,0 +1,24 @@
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - ${CONTAINER_LOGS_DIR}*
+    json.keys_under_root: true
+    json.message_key: message
+output:
+  elasticsearch:
+    hosts: '${ELASTICSEARCH_HOST}'
+    username: '${ELASTICSEARCH_USERNAME}'
+    password: '${ELASTICSEARCH_PASSWORD}'
+    
+output.elasticsearch.index: "magnum-${STAGE_NAME}-logs-${SERVICE_NAME}-%{+yyyy.MM}"
+setup.template.name: "magnum-${STAGE_NAME}-logs-${SERVICE_NAME}"
+setup.template.pattern: "magnum-${STAGE_NAME}-logs-${SERVICE_NAME}-*"
+setup.template.settings.index.number_of_replicas: "0"
+setup.template.settings.index.lifecycle.name: "magnum-${STAGE_NAME}-logs-${SERVICE_NAME}"
+
+setup.ilm.enabled: auto
+setup.ilm.rollover_alias: "magnum-${STAGE_NAME}-logs-${SERVICE_NAME}-%{+yyyy.MM}"
+setup.ilm.pattern: "000001"
+logging.to_files: ${LOGS_TO_FILE}
+logging.level: ${ERROR_LEVEL}

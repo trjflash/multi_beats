@@ -1,0 +1,33 @@
+version: '3.9'
+services:
+  metricbeat:
+    image: docker.elastic.co/beats/metricbeat:$ELASTIC_VERSION
+    container_name: $METRICS_CONTAINER
+    user: root
+    environment:
+      - ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST
+      - KIBANA_HOST=$KIBANA_HOST
+      - ELASTICSEARCH_USERNAME=$ELASTIC_USER
+      - ELASTICSEARCH_PASSWORD=$ELASTIC_PASSWORD
+	  - STAGE_NAME=$STAGE_NAME
+	configs:
+      - source: metricbeat_container_config
+        target: /usr/share/filebeat/filebeat.yml  
+    volumes:
+      /var/run/docker.sock:/var/run/docker.sock:ro
+      /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
+      /proc:/hostfs/proc:ro
+      /:/hostfs:ro
+    command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
+    networks:
+      - beats
+
+configs:
+  metricbeat_container_config:
+    file: $ROOT_PATH/$HEARTBEAT_CONTAINER_CONFIG:/usr/share/metricbeat/metricbeat.yml	 
+
+	  
+networks:
+  beats:
+    external: true
+    name: bridge

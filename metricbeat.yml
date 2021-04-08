@@ -1,0 +1,44 @@
+metricbeat.config:
+  modules:
+    path: ${path.config}/modules.d/*.yml
+    reload.enabled: false
+name: "ec-auth-metrics"
+metricbeat.modules:
+  - module: system
+    metricsets:
+      - cpu             # CPU usage
+      - load            # CPU load averages
+      - memory          # Memory usage
+      - network         # Network IO
+      - process         # Per process metrics
+      - process_summary # Process summary
+      - uptime          # System Uptime
+      - socket_summary  # Socket summary
+      - diskio         # Disk IO
+      - fsstat         # File system summary metrics
+    enabled: true
+    period: 20m
+    processes: ['.*']
+    cpu.metrics: [ "percentages","normalized_percentages" ]  # The other available option is ticks.
+    core.metrics: [ "percentages" ]
+setup.kibana:
+  host: '${KIBANA_HOST}'
+setup.dashboards.enabled: true
+
+output:
+  elasticsearch:
+    hosts: '${ELASTICSEARCH_HOST}'
+    username: '${ELASTICSEARCH_USERNAME}'
+    password: '${ELASTICSEARCH_PASSWORD}'
+       
+output.elasticsearch.index: "magnum-${STAGE_NAME}-metrics-%{+yyyy.MM}"
+setup.template.name: "magnum-${STAGE_NAME}-metrics"
+setup.template.pattern: "magnum-${STAGE_NAME}-metrics-*"
+setup.template.settings.index.number_of_replicas: "0"
+setup.template.settings.index.lifecycle.name: "magnum-${STAGE_NAME}-metrics"
+
+setup.ilm.enabled: auto
+setup.ilm.rollover_alias: "magnum-${STAGE_NAME}-metrics-%{+yyyy.MM}"
+setup.ilm.pattern: "000001"
+logging.to_files: ${metrics_TO_FILE}
+logging.level: ${ERROR_LEVEL}

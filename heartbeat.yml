@@ -1,0 +1,54 @@
+heartbeat.monitors:
+  - type: http
+    id: ec-auth-monitor
+    name: auth-health-check
+    urls: ["http://10.70.1.14:8080/auth/server/api/v1/health/check"]
+    schedule: '@every 20m'
+    check.response.status: [200]
+  - type: http
+    id: ec-catalog-monitor
+    name: catalog-health-check
+    urls: ["http://10.70.1.13:8080/catalog/health/check"]
+    schedule: '@every 20m'
+    check.response.status: [200]
+  - type: http
+    id: ec-core-monitor
+    name: core-health-check
+    urls: ["http://10.70.1.12:8080/core/health/check"]
+    schedule: '@every 20m'
+    check.response.status: [200]
+  - type: http
+    id: ec-payment-monitor
+    name: payment-health-check
+    urls: ["http://10.70.1.16:8081/epay/api/v1/health/check"]
+    schedule: '@every 20m'
+    check.response.status: [200]
+  - type: http
+    id: ec-notification-monitor
+    name: notification-health-check
+    urls: ["http://10.70.1.16:8080/health/check"]
+    schedule: '@every 20m'
+    check.response.status: [200]
+  - type: http
+    id: ec-ofd-monitor
+    name: ofd-health-check
+    urls: ["http://10.70.1.16:8082/health/check"]
+    schedule: '@every 20m'
+    check.response.status: [200]
+output:
+  elasticsearch:
+    hosts: '${ELASTICSEARCH_HOST}'
+    username: '${ELASTICSEARCH_USERNAME}'
+    password: '${ELASTICSEARCH_PASSWORD}'
+       
+output.elasticsearch.index: "magnum-${STAGE_NAME}-heartbeat-%{+yyyy.MM}"
+setup.template.name: "magnum-${STAGE_NAME}-heartbeat"
+setup.template.pattern: "magnum-${STAGE_NAME}-heartbeat-*"
+setup.template.settings.index.number_of_replicas: "0"
+setup.template.settings.index.lifecycle.name: "magnum-${STAGE_NAME}-heartbeat"
+
+setup.ilm.enabled: auto
+setup.ilm.rollover_alias: "magnum-${STAGE_NAME}-heartbeat-%{+yyyy.MM}"
+setup.ilm.pattern: "000001"
+logging.to_files: ${metrics_TO_FILE}
+logging.level: ${ERROR_LEVEL}

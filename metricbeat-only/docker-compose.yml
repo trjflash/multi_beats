@@ -9,8 +9,8 @@ services:
       - KIBANA_HOST=$KIBANA_HOST
       - ELASTICSEARCH_USERNAME=$ELASTIC_USER
       - ELASTICSEARCH_PASSWORD=$ELASTIC_PASSWORD
-	  - STAGE_NAME=$STAGE_NAME
-	configs:
+      - STAGE_NAME=$STAGE_NAME
+    configs:
       - source: metricbeat_container_config
         target: /usr/share/filebeat/filebeat.yml  
     volumes:

@@ -10,19 +10,17 @@ services:
       - ELASTICSEARCH_USERNAME=$ELASTIC_USER
       - ELASTICSEARCH_PASSWORD=$ELASTIC_PASSWORD
       - STAGE_NAME=$STAGE_NAME
-    configs:
-      - source: heartbeat_container_config
-        target: /usr/share/filebeat/filebeat.yml  
     volumes:
+        - type: bind
+          source: $ROOT_PATH/$METRICBEAT_CONTAINER_CONFIG
+          target: /usr/share/metricbeat/metricbeat.yml
+          read_only: true
+
     command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
     networks:
       - beats
-      
-configs:
-  heartbeat_container_config:
-    file: $ROOT_PATH/$METRICBEAT_CONTAINER_CONFIG:/usr/share/heartbeat/heartbeat.yml
-	  
+          
 networks:
   beats:
-    external: true
-    name: bridge
+    name: beats
+    driver: bridge

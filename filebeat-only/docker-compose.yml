@@ -14,12 +14,16 @@ services:
       - LOGS_TO_FILE=$LOGS_TO_FILE
       - ERROR_LEVEL=$ERROR_LEVEL
       - STAGE_NAME=$STAGE_NAME
-    configs:
-      - source: first_container_config
-        target: /usr/share/filebeat/filebeat.yml  
     volumes:
-      - $ROOT_PATH/$FIRST_CONTAINER_LOGS:$CONTAINER_LOGS_DIR
-
+        - type: bind
+          source: $ROOT_PATH/$FIRST_CONTAINER_CONFIG
+          target: /usr/share/metricbeat/metricbeat.yml
+          read_only: true
+        - type: bind
+          source: $ROOT_PATH/$FIRST_CONTAINER_LOGS
+          target: $CONTAINER_LOGS_DIR
+          read_only: true
+          
     command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
     networks:
       - beats
@@ -38,12 +42,16 @@ services:
       - LOGS_TO_FILE=$LOGS_TO_FILE
       - ERROR_LEVEL=$ERROR_LEVEL
       - STAGE_NAME=$STAGE_NAME
-    configs:
-      - source: second_container_config
-        target: /usr/share/filebeat/filebeat.yml  
     volumes:
-      - $ROOT_PATH/$SECOND_CONTAINER_LOGS:$CONTAINER_LOGS_DIR
-
+        - type: bind
+          source: $ROOT_PATH/$SECOND_CONTAINER_CONFIG
+          target: /usr/share/metricbeat/metricbeat.yml
+          read_only: true
+        - type: bind
+          source: $ROOT_PATH/$SECOND_CONTAINER_LOGS
+          target: $CONTAINER_LOGS_DIR
+          read_only: true
+          
     command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
     networks:
       - beats
@@ -62,12 +70,16 @@ services:
       - LOGS_TO_FILE=$LOGS_TO_FILE
       - ERROR_LEVEL=$ERROR_LEVEL
       - STAGE_NAME=$STAGE_NAME
-    configs:
-      - source: third_container_config
-        target: /usr/share/filebeat/filebeat.yml  
     volumes:
-      - $ROOT_PATH/$THIRD_CONTAINER_LOGS:$CONTAINER_LOGS_DIR
-
+        - type: bind
+          source: $ROOT_PATH/$THIRD_CONTAINER_CONFIG
+          target: /usr/share/metricbeat/metricbeat.yml
+          read_only: true
+        - type: bind
+          source: $ROOT_PATH/$THIRD_CONTAINER_LOGS
+          target: $CONTAINER_LOGS_DIR
+          read_only: true
+          
     command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
     networks:
       - beats
@@ -86,11 +98,16 @@ services:
       - LOGS_TO_FILE=$LOGS_TO_FILE
       - ERROR_LEVEL=$ERROR_LEVEL
       - STAGE_NAME=$STAGE_NAME
-    configs:
-      - source: fourth_container_config
-        target: /usr/share/filebeat/filebeat.yml  
     volumes:
-      - $ROOT_PATH/$FOURTH_CONTAINER_LOGS:$CONTAINER_LOGS_DIR
+        - type: bind
+          source: $ROOT_PATH/$FOURTH_CONTAINER_CONFIG
+          target: /usr/share/metricbeat/metricbeat.yml
+          read_only: true
+        - type: bind
+          source: $ROOT_PATH/$FOURTH_CONTAINER_LOGS
+          target: $CONTAINER_LOGS_DIR
+          read_only: true
+          
 
     command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
     networks:
@@ -110,12 +127,16 @@ services:
       - LOGS_TO_FILE=$LOGS_TO_FILE
       - ERROR_LEVEL=$ERROR_LEVEL
       - STAGE_NAME=$STAGE_NAME
-    configs:
-      - source: fifth_container_config
-        target: /usr/share/filebeat/filebeat.yml  
     volumes:
-      - $ROOT_PATH/$FIFTH_CONTAINER_LOGS:$CONTAINER_LOGS_DIR
-
+        - type: bind
+          source: $ROOT_PATH/$FIFTH_CONTAINER_CONFIG
+          target: /usr/share/metricbeat/metricbeat.yml
+          read_only: true
+        - type: bind
+          source: $ROOT_PATH/$FIFTH_CONTAINER_LOGS
+          target: $CONTAINER_LOGS_DIR
+          read_only: true
+          
     command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
     networks:
       - beats
@@ -134,12 +155,16 @@ services:
       - LOGS_TO_FILE=$LOGS_TO_FILE
       - ERROR_LEVEL=$ERROR_LEVEL
       - STAGE_NAME=$STAGE_NAME
-    configs:
-      - source: sixth_container_config
-        target: /usr/share/filebeat/filebeat.yml  
     volumes:
-      - $ROOT_PATH/$SIXTH_CONTAINER_LOGS:$CONTAINER_LOGS_DIR
-
+        - type: bind
+          source: $ROOT_PATH/$SIXTH_CONTAINER_CONFIG
+          target: /usr/share/metricbeat/metricbeat.yml
+          read_only: true
+        - type: bind
+          source: $ROOT_PATH/$SIXTH_CONTAINER_LOGS
+          target: $CONTAINER_LOGS_DIR
+          read_only: true
+          
     command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
     networks:
       - beats
@@ -158,12 +183,16 @@ services:
       - LOGS_TO_FILE=$LOGS_TO_FILE
       - ERROR_LEVEL=$ERROR_LEVEL
       - STAGE_NAME=$STAGE_NAME
-    configs:
-      - source: seventh_container_config
-        target: /usr/share/filebeat/filebeat.yml  
     volumes:
-      - $ROOT_PATH/$SEVENTH_CONTAINER_LOGS:$CONTAINER_LOGS_DIR
-
+        - type: bind
+          source: $ROOT_PATH/$SEVENTH_CONTAINER_CONFIG
+          target: /usr/share/metricbeat/metricbeat.yml
+          read_only: true
+        - type: bind
+          source: $ROOT_PATH/$SEVENTH_CONTAINER_LOGS
+          target: $CONTAINER_LOGS_DIR
+          read_only: true
+          
     command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
     networks:
       - beats
@@ -182,12 +211,16 @@ services:
       - LOGS_TO_FILE=$LOGS_TO_FILE
       - ERROR_LEVEL=$ERROR_LEVEL
       - STAGE_NAME=$STAGE_NAME
-    configs:
-      - source: eighth_container_config
-        target: /usr/share/filebeat/filebeat.yml  
     volumes:
-      - $ROOT_PATH/$EIGHTH_CONTAINER_LOGS:$CONTAINER_LOGS_DIR
-
+        - type: bind
+          source: $ROOT_PATH/$EIGHTH_CONTAINER_CONFIG
+          target: /usr/share/metricbeat/metricbeat.yml
+          read_only: true
+        - type: bind
+          source: $ROOT_PATH/$EIGHTH_CONTAINER_LOGS
+          target: $CONTAINER_LOGS_DIR
+          read_only: true
+          
     command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
     networks:
       - beats
@@ -206,12 +239,16 @@ services:
       - LOGS_TO_FILE=$LOGS_TO_FILE
       - ERROR_LEVEL=$ERROR_LEVEL
       - STAGE_NAME=$STAGE_NAME
-    configs:
-      - source: ninth_container_config
-        target: /usr/share/filebeat/filebeat.yml  
     volumes:
-      - $ROOT_PATH/$NINTH_CONTAINER_LOGS:$CONTAINER_LOGS_DIR
-
+        - type: bind
+          source: $ROOT_PATH/$NINTH_CONTAINER_CONFIG
+          target: /usr/share/metricbeat/metricbeat.yml
+          read_only: true
+        - type: bind
+          source: $ROOT_PATH/$NINTH_CONTAINER_LOGS
+          target: $CONTAINER_LOGS_DIR
+          read_only: true
+          
     command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
     networks:
       - beats
@@ -230,12 +267,16 @@ services:
       - LOGS_TO_FILE=$LOGS_TO_FILE
       - ERROR_LEVEL=$ERROR_LEVEL
       - STAGE_NAME=$STAGE_NAME
-    configs:
-      - source: tenth_container_config
-        target: /usr/share/filebeat/filebeat.yml  
     volumes:
-      - $ROOT_PATH/$TENTH_CONTAINER_LOGS:$CONTAINER_LOGS_DIR
-
+        - type: bind
+          source: $ROOT_PATH/$TENTH_CONTAINER_CONFIG
+          target: /usr/share/metricbeat/metricbeat.yml
+          read_only: true
+        - type: bind
+          source: $ROOT_PATH/$TENTH_CONTAINER_LOGS
+          target: $CONTAINER_LOGS_DIR
+          read_only: true
+          
     command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
     networks:
       - beats
@@ -254,44 +295,21 @@ services:
       - LOGS_TO_FILE=$LOGS_TO_FILE
       - ERROR_LEVEL=$ERROR_LEVEL
       - STAGE_NAME=$STAGE_NAME
-    configs:
-      - source: eleventh_container_config
-        target: /usr/share/filebeat/filebeat.yml  
     volumes:
-      - $ROOT_PATH/$ELEVENTH_CONTAINER_LOGS:$CONTAINER_LOGS_DIR
-
+        - type: bind
+          source: $ROOT_PATH/$ELEVENTH_CONTAINER_CONFIG
+          target: /usr/share/metricbeat/metricbeat.yml
+          read_only: true
+        - type: bind
+          source: $ROOT_PATH/$ELEVENTH_CONTAINER_LOGS
+          target: $CONTAINER_LOGS_DIR
+          read_only: true
+          
     command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
     networks:
       - beats
-
-
-
-configs:
-  first_container_config:
-    file: $ROOT_PATH/$FIRST_CONTAINER_CONFIG:/usr/share/filebeat/filebeat.yml
-  second_container_config:
-    file: $ROOT_PATH/$SECOND_CONTAINER_CONFIG:/usr/share/filebeat/filebeat.yml
-  third_container_config:
-    file: $ROOT_PATH/$THIRD_CONTAINER_CONFIG:/usr/share/filebeat/filebeat.yml
-  fourth_container_config:
-    file: $ROOT_PATH/$FOURTH_CONTAINER_CONFIG:/usr/share/filebeat/filebeat.yml
-  fifth_container_config:
-    file: $ROOT_PATH/$FIFTH_CONTAINER_CONFIG:/usr/share/filebeat/filebeat.yml
-  sixth_container_config:
-    file: $ROOT_PATH/$SIXTH_CONTAINER_CONFIG:/usr/share/filebeat/filebeat.yml
-  seventh_container_config:
-    file: $ROOT_PATH/$SEVENTH_CONTAINER_CONFIG:/usr/share/filebeat/filebeat.yml
-  eighth_container_config:
-    file: $ROOT_PATH/$EIGHTH_CONTAINER_CONFIG:/usr/share/filebeat/filebeat.yml
-  ninth_container_config:
-    file: $ROOT_PATH/$NINTH_CONTAINER_CONFIG:/usr/share/filebeat/filebeat.yml
-  tenth_container_config:
-    file: $ROOT_PATH/$TENTH_CONTAINER_CONFIG:/usr/share/filebeat/filebeat.yml
-  eleventh_container_config:
-    file: $ROOT_PATH/$ELEVENTH_CONTAINER_CONFIG:/usr/share/filebeat/filebeat.yml	 
-
 	  
 networks:
   beats:
-    external: true
-    name: bridge
+    name: beats
+    driver: bridge

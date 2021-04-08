@@ -10,24 +10,37 @@ services:
       - ELASTICSEARCH_USERNAME=$ELASTIC_USER
       - ELASTICSEARCH_PASSWORD=$ELASTIC_PASSWORD
       - STAGE_NAME=$STAGE_NAME
-    configs:
-      - source: metricbeat_container_config
-        target: /usr/share/filebeat/filebeat.yml  
     volumes:
-      /var/run/docker.sock:/var/run/docker.sock:ro
-      /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
-      /proc:/hostfs/proc:ro
-      /:/hostfs:ro
+        - type: bind
+          source: $ROOT_PATH/$HEARTBEAT_CONTAINER_CONFIG
+          target: /usr/share/metricbeat/metricbeat.yml
+          read_only: true
+          
+        - type: bind
+          source: /var/run/docker.sock
+          target: /var/run/docker.sock
+          read_only: true
+
+        - type: bind
+          source: /sys/fs/cgroup
+          target: /hostfs/sys/fs/cgroup
+          read_only: true
+          
+        - type: bind
+          source: /proc
+          target: /hostfs/proc
+          read_only: true   
+          
+        - type: bind
+          source: /
+          target: /hostfs
+          read_only: true
+
     command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
     networks:
       - beats
-
-configs:
-  metricbeat_container_config:
-    file: $ROOT_PATH/$HEARTBEAT_CONTAINER_CONFIG:/usr/share/metricbeat/metricbeat.yml	 
-
-	  
+     
 networks:
   beats:
-    external: true
-    name: bridge
+    name: beats
+    driver: bridge

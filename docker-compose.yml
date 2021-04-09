@@ -17,14 +17,12 @@ services:
     volumes:
         - type: bind
           source: $ROOT_PATH/$FIRST_CONTAINER_CONFIG
-          target: /usr/share/metricbeat/metricbeat.yml
-          read_only: true
+          target: /usr/share/filebeat/filebeat.yml
         - type: bind
           source: $ROOT_PATH/$FIRST_CONTAINER_LOGS
           target: $CONTAINER_LOGS_DIR
           read_only: true
-          
-    command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
+    command: ["--strict.perms=false"]
     networks:
       - beats
 
@@ -45,14 +43,13 @@ services:
     volumes:
         - type: bind
           source: $ROOT_PATH/$SECOND_CONTAINER_CONFIG
-          target: /usr/share/metricbeat/metricbeat.yml
-          read_only: true
+          target: /usr/share/filebeat/filebeat.yml
         - type: bind
           source: $ROOT_PATH/$SECOND_CONTAINER_LOGS
           target: $CONTAINER_LOGS_DIR
           read_only: true
-          
-    command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
+
+    command: ["--strict.perms=false"]
     networks:
       - beats
       
@@ -73,14 +70,13 @@ services:
     volumes:
         - type: bind
           source: $ROOT_PATH/$THIRD_CONTAINER_CONFIG
-          target: /usr/share/metricbeat/metricbeat.yml
-          read_only: true
+          target: /usr/share/filebeat/filebeat.yml
         - type: bind
           source: $ROOT_PATH/$THIRD_CONTAINER_LOGS
           target: $CONTAINER_LOGS_DIR
           read_only: true
           
-    command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
+    command: ["--strict.perms=false"]
     networks:
       - beats
       
@@ -101,15 +97,14 @@ services:
     volumes:
         - type: bind
           source: $ROOT_PATH/$FOURTH_CONTAINER_CONFIG
-          target: /usr/share/metricbeat/metricbeat.yml
-          read_only: true
+          target: /usr/share/filebeat/filebeat.yml
         - type: bind
           source: $ROOT_PATH/$FOURTH_CONTAINER_LOGS
           target: $CONTAINER_LOGS_DIR
           read_only: true
           
 
-    command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
+    command: ["--strict.perms=false"]
     networks:
       - beats
       
@@ -130,14 +125,13 @@ services:
     volumes:
         - type: bind
           source: $ROOT_PATH/$FIFTH_CONTAINER_CONFIG
-          target: /usr/share/metricbeat/metricbeat.yml
-          read_only: true
+          target: /usr/share/filebeat/filebeat.yml
         - type: bind
           source: $ROOT_PATH/$FIFTH_CONTAINER_LOGS
           target: $CONTAINER_LOGS_DIR
           read_only: true
           
-    command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
+    command: ["--strict.perms=false"]
     networks:
       - beats
  
@@ -158,14 +152,13 @@ services:
     volumes:
         - type: bind
           source: $ROOT_PATH/$SIXTH_CONTAINER_CONFIG
-          target: /usr/share/metricbeat/metricbeat.yml
-          read_only: true
+          target: /usr/share/filebeat/filebeat.yml
         - type: bind
           source: $ROOT_PATH/$SIXTH_CONTAINER_LOGS
           target: $CONTAINER_LOGS_DIR
           read_only: true
           
-    command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
+    command: ["--strict.perms=false"]
     networks:
       - beats
 
@@ -186,14 +179,13 @@ services:
     volumes:
         - type: bind
           source: $ROOT_PATH/$SEVENTH_CONTAINER_CONFIG
-          target: /usr/share/metricbeat/metricbeat.yml
-          read_only: true
+          target: /usr/share/filebeat/filebeat.yml
         - type: bind
           source: $ROOT_PATH/$SEVENTH_CONTAINER_LOGS
           target: $CONTAINER_LOGS_DIR
           read_only: true
           
-    command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
+    command: ["--strict.perms=false"]
     networks:
       - beats
 
@@ -214,14 +206,13 @@ services:
     volumes:
         - type: bind
           source: $ROOT_PATH/$EIGHTH_CONTAINER_CONFIG
-          target: /usr/share/metricbeat/metricbeat.yml
-          read_only: true
+          target: /usr/share/filebeat/filebeat.yml
         - type: bind
           source: $ROOT_PATH/$EIGHTH_CONTAINER_LOGS
           target: $CONTAINER_LOGS_DIR
           read_only: true
           
-    command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
+    command: ["--strict.perms=false"]
     networks:
       - beats
 
@@ -242,14 +233,13 @@ services:
     volumes:
         - type: bind
           source: $ROOT_PATH/$NINTH_CONTAINER_CONFIG
-          target: /usr/share/metricbeat/metricbeat.yml
-          read_only: true
+          target: /usr/share/filebeat/filebeat.yml
         - type: bind
           source: $ROOT_PATH/$NINTH_CONTAINER_LOGS
           target: $CONTAINER_LOGS_DIR
           read_only: true
           
-    command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
+    command: ["--strict.perms=false"]
     networks:
       - beats
  
@@ -270,14 +260,13 @@ services:
     volumes:
         - type: bind
           source: $ROOT_PATH/$TENTH_CONTAINER_CONFIG
-          target: /usr/share/metricbeat/metricbeat.yml
-          read_only: true
+          target: /usr/share/filebeat/filebeat.yml
         - type: bind
           source: $ROOT_PATH/$TENTH_CONTAINER_LOGS
           target: $CONTAINER_LOGS_DIR
           read_only: true
           
-    command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
+    command: ["--strict.perms=false"]
     networks:
       - beats
       
@@ -298,14 +287,13 @@ services:
     volumes:
         - type: bind
           source: $ROOT_PATH/$ELEVENTH_CONTAINER_CONFIG
-          target: /usr/share/metricbeat/metricbeat.yml
-          read_only: true
+          target: /usr/share/filebeat/filebeat.yml
         - type: bind
           source: $ROOT_PATH/$ELEVENTH_CONTAINER_LOGS
           target: $CONTAINER_LOGS_DIR
           read_only: true
           
-    command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
+    command: ["--strict.perms=false"]
     networks:
       - beats
 
@@ -318,12 +306,13 @@ services:
       - KIBANA_HOST=$KIBANA_HOST
       - ELASTICSEARCH_USERNAME=$ELASTIC_USER
       - ELASTICSEARCH_PASSWORD=$ELASTIC_PASSWORD
+      - LOGS_TO_FILE=$LOGS_TO_FILE
+      - ERROR_LEVEL=$ERROR_LEVEL
       - STAGE_NAME=$STAGE_NAME
     volumes:
         - type: bind
           source: $ROOT_PATH/$HEARTBEAT_CONTAINER_CONFIG
           target: /usr/share/metricbeat/metricbeat.yml
-          read_only: true
           
         - type: bind
           source: /var/run/docker.sock
@@ -358,14 +347,15 @@ services:
       - KIBANA_HOST=$KIBANA_HOST
       - ELASTICSEARCH_USERNAME=$ELASTIC_USER
       - ELASTICSEARCH_PASSWORD=$ELASTIC_PASSWORD
+      - LOGS_TO_FILE=$LOGS_TO_FILE
+      - ERROR_LEVEL=$ERROR_LEVEL
       - STAGE_NAME=$STAGE_NAME
     volumes:
         - type: bind
-          source: $ROOT_PATH/$METRICBEAT_CONTAINER_CONFIG
-          target: /usr/share/metricbeat/metricbeat.yml
-          read_only: true
+          source: $ROOT_PATH/$HEARTBEAT_CONTAINER_CONFIG
+          target: /usr/share/heartbeat/heartbeat.yml
 
-    command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
+    command: ["--strict.perms=false"]
     networks:
       - beats
           

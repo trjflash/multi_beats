@@ -20,5 +20,3 @@ setup.template.settings.index.lifecycle.name: "magnum-${STAGE_NAME}-logs-${SERVI
 setup.ilm.enabled: auto
 setup.ilm.rollover_alias: "magnum-${STAGE_NAME}-logs-${SERVICE_NAME}-%{+yyyy.MM}"
 setup.ilm.pattern: "000001"
-logging.to_files: ${LOGS_TO_FILE}
-logging.level: ${ERROR_LEVEL}

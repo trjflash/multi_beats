@@ -1,0 +1,2 @@
+#!/bin/sh
+curl --user elastic:changeme  -XPOST "http://"$1"/.kibana/_doc/index-pattern:"$2"" -H 'Content-Type: application/json' -d'{"type":"index-pattern","index-pattern":{"title":"'$2'*","timeFieldName":"'$3'"}}' &>/dev/null

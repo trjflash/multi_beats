@@ -20,8 +20,12 @@ services:
           # target: /usr/share/filebeat1/logs
 
         - type: bind
-          source: $ROOT_PATH/$CONTAINER_DASBOARDS_CREATES
-          target: /usr/share/filebeat/create-dashboards.sh
+          source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
+          target: /usr/share/filebeat/policy-create.sh
+          
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
+          target: /usr/share/filebeat/pattern-create.sh
 
         - type: bind
           source: $ROOT_PATH/$FIRST_CONTAINER_CONFIG
@@ -32,7 +36,8 @@ services:
           target: $CONTAINER_LOGS_DIR
           read_only: true
     command: >
-      sh -c "/usr/share/filebeat/create-dashboards.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${FIRST_CONTAINER_SERVICE_NAME} $FIRST_CONTAINER_POLICY_HOT_SIZE $FIRST_CONTAINER_POLICY_HOT_TIME $FIRST_CONTAINER_POLICY_DELETE_AGE
+      sh -c "/usr/share/filebeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${FIRST_CONTAINER_SERVICE_NAME} $FIRST_CONTAINER_POLICY_HOT_SIZE $FIRST_CONTAINER_POLICY_HOT_TIME $FIRST_CONTAINER_POLICY_DELETE_AGE
+      && /usr/share/filebeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${FIRST_CONTAINER_SERVICE_NAME} $FIRST_CONTAINER_TIMESTAMP_FIELD
       && filebeat --strict.perms=false"          
     networks:
       - beats
@@ -57,8 +62,12 @@ services:
           # target: /usr/share/filebeat2/logs
 
         - type: bind
-          source: $ROOT_PATH/$CONTAINER_DASBOARDS_CREATES
-          target: /usr/share/filebeat/create-dashboards.sh
+          source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
+          target: /usr/share/filebeat/policy-create.sh      
+          
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
+          target: /usr/share/filebeat/pattern-create.sh
 
         - type: bind
           source: $ROOT_PATH/$SECOND_CONTAINER_CONFIG
@@ -69,7 +78,8 @@ services:
           target: $CONTAINER_LOGS_DIR
           read_only: true
     command: >
-      sh -c "/usr/share/filebeat/create-dashboards.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${SECOND_CONTAINER_SERVICE_NAME} $SECOND_CONTAINER_POLICY_HOT_SIZE $SECOND_CONTAINER_POLICY_HOT_TIME $SECOND_CONTAINER_POLICY_DELETE_AGE
+      sh -c "/usr/share/filebeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${SECOND_CONTAINER_SERVICE_NAME} $SECOND_CONTAINER_POLICY_HOT_SIZE $SECOND_CONTAINER_POLICY_HOT_TIME $SECOND_CONTAINER_POLICY_DELETE_AGE
+      && /usr/share/filebeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${SECOND_CONTAINER_SERVICE_NAME} $SECOND_CONTAINER_TIMESTAMP_FIELD
       && filebeat --strict.perms=false"          
     networks:
       - beats
@@ -94,8 +104,12 @@ services:
           # target: /usr/share/filebeat3/logs
 
         - type: bind
-          source: $ROOT_PATH/$CONTAINER_DASBOARDS_CREATES
-          target: /usr/share/filebeat/create-dashboards.sh
+          source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
+          target: /usr/share/filebeat/policy-create.sh
+
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
+          target: /usr/share/filebeat/pattern-create.sh
 
         - type: bind
           source: $ROOT_PATH/$THIRD_CONTAINER_CONFIG
@@ -106,7 +120,8 @@ services:
           target: $CONTAINER_LOGS_DIR
           read_only: true
     command: >
-      sh -c "/usr/share/filebeat/create-dashboards.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${THIRD_CONTAINER_SERVICE_NAME} $THIRD_CONTAINER_POLICY_HOT_SIZE $THIRD_CONTAINER_POLICY_HOT_TIME $THIRD_CONTAINER_POLICY_DELETE_AGE
+      sh -c "/usr/share/filebeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${THIRD_CONTAINER_SERVICE_NAME} $THIRD_CONTAINER_POLICY_HOT_SIZE $THIRD_CONTAINER_POLICY_HOT_TIME $THIRD_CONTAINER_POLICY_DELETE_AGE
+      && /usr/share/filebeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${THIRD_CONTAINER_SERVICE_NAME} $THIRD_CONTAINER_TIMESTAMP_FIELD
       && filebeat --strict.perms=false"          
     networks:
       - beats
@@ -131,8 +146,12 @@ services:
           # target: /usr/share/filebeat4/logs
 
         - type: bind
-          source: $ROOT_PATH/$CONTAINER_DASBOARDS_CREATES
-          target: /usr/share/filebeat/create-dashboards.sh
+          source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
+          target: /usr/share/filebeat/policy-create.sh
+
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
+          target: /usr/share/filebeat/pattern-create.sh
 
         - type: bind
           source: $ROOT_PATH/$FOURTH_CONTAINER_CONFIG
@@ -143,7 +162,8 @@ services:
           target: $CONTAINER_LOGS_DIR
           read_only: true
     command: >
-      sh -c "/usr/share/filebeat/create-dashboards.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${FOURTH_CONTAINER_SERVICE_NAME} $FOURTH_CONTAINER_POLICY_HOT_SIZE $FOURTH_CONTAINER_POLICY_HOT_TIME $FOURTH_CONTAINER_POLICY_DELETE_AGE
+      sh -c "/usr/share/filebeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${FOURTH_CONTAINER_SERVICE_NAME} $FOURTH_CONTAINER_POLICY_HOT_SIZE $FOURTH_CONTAINER_POLICY_HOT_TIME $FOURTH_CONTAINER_POLICY_DELETE_AGE
+      && /usr/share/filebeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${FOURTH_CONTAINER_SERVICE_NAME} $FOURTH_CONTAINER_TIMESTAMP_FIELD
       && filebeat --strict.perms=false"          
     networks:
       - beats
@@ -168,8 +188,12 @@ services:
           # target: /usr/share/filebeat5/logs
 
         - type: bind
-          source: $ROOT_PATH/$CONTAINER_DASBOARDS_CREATES
-          target: /usr/share/filebeat/create-dashboards.sh
+          source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
+          target: /usr/share/filebeat/policy-create.sh
+
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
+          target: /usr/share/filebeat/pattern-create.sh
 
         - type: bind
           source: $ROOT_PATH/$FIFTH_CONTAINER_CONFIG
@@ -180,7 +204,8 @@ services:
           target: $CONTAINER_LOGS_DIR
           read_only: true
     command: >
-      sh -c "/usr/share/filebeat/create-dashboards.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${FIFTH_CONTAINER_SERVICE_NAME} $FIFTH_CONTAINER_POLICY_HOT_SIZE $FIFTH_CONTAINER_POLICY_HOT_TIME $FIFTH_CONTAINER_POLICY_DELETE_AGE
+      sh -c "/usr/share/filebeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${FIFTH_CONTAINER_SERVICE_NAME} $FIFTH_CONTAINER_POLICY_HOT_SIZE $FIFTH_CONTAINER_POLICY_HOT_TIME $FIFTH_CONTAINER_POLICY_DELETE_AGE
+      && /usr/share/filebeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${FIFTH_CONTAINER_SERVICE_NAME} $FIFTH_CONTAINER_TIMESTAMP_FIELD
       && filebeat --strict.perms=false"          
     networks:
       - beats
@@ -205,8 +230,12 @@ services:
           # target: /usr/share/filebeat6/logs
 
         - type: bind
-          source: $ROOT_PATH/$CONTAINER_DASBOARDS_CREATES
-          target: /usr/share/filebeat/create-dashboards.sh
+          source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
+          target: /usr/share/filebeat/policy-create.sh
+
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
+          target: /usr/share/filebeat/pattern-create.sh
 
         - type: bind
           source: $ROOT_PATH/$SIXTH_CONTAINER_CONFIG
@@ -217,7 +246,8 @@ services:
           target: $CONTAINER_LOGS_DIR
           read_only: true
     command: >
-      sh -c "/usr/share/filebeat/create-dashboards.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${SIXTH_CONTAINER_SERVICE_NAME} $SIXTH_CONTAINER_POLICY_HOT_SIZE $SIXTH_CONTAINER_POLICY_HOT_TIME $SIXTH_CONTAINER_POLICY_DELETE_AGE
+      sh -c "/usr/share/filebeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${SIXTH_CONTAINER_SERVICE_NAME} $SIXTH_CONTAINER_POLICY_HOT_SIZE $SIXTH_CONTAINER_POLICY_HOT_TIME $SIXTH_CONTAINER_POLICY_DELETE_AGE
+      && /usr/share/filebeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${SIXTH_CONTAINER_SERVICE_NAME} $SIXTH_CONTAINER_TIMESTAMP_FIELD
       && filebeat --strict.perms=false"          
     networks:
       - beats
@@ -242,8 +272,12 @@ services:
           # target: /usr/share/filebeat7/logs
 
         - type: bind
-          source: $ROOT_PATH/$CONTAINER_DASBOARDS_CREATES
-          target: /usr/share/filebeat/create-dashboards.sh
+          source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
+          target: /usr/share/filebeat/policy-create.sh
+
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
+          target: /usr/share/filebeat/pattern-create.sh
 
         - type: bind
           source: $ROOT_PATH/$SEVENTH_CONTAINER_CONFIG
@@ -254,7 +288,8 @@ services:
           target: $CONTAINER_LOGS_DIR
           read_only: true
     command: >
-      sh -c "/usr/share/filebeat/create-dashboards.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${SEVENTH_CONTAINER_SERVICE_NAME} $SEVENTH_CONTAINER_POLICY_HOT_SIZE $SEVENTH_CONTAINER_POLICY_HOT_TIME $SEVENTH_CONTAINER_POLICY_DELETE_AGE
+      sh -c "/usr/share/filebeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${SEVENTH_CONTAINER_SERVICE_NAME} $SEVENTH_CONTAINER_POLICY_HOT_SIZE $SEVENTH_CONTAINER_POLICY_HOT_TIME $SEVENTH_CONTAINER_POLICY_DELETE_AGE
+      && /usr/share/filebeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${SEVENTH_CONTAINER_SERVICE_NAME} $SEVENTH_CONTAINER_TIMESTAMP_FIELD
       && filebeat --strict.perms=false"          
     networks:
       - beats
@@ -279,8 +314,12 @@ services:
           # target: /usr/share/filebeat8/logs
 
         - type: bind
-          source: $ROOT_PATH/$CONTAINER_DASBOARDS_CREATES
-          target: /usr/share/filebeat/create-dashboards.sh
+          source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
+          target: /usr/share/filebeat/policy-create.sh
+
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
+          target: /usr/share/filebeat/pattern-create.sh
 
         - type: bind
           source: $ROOT_PATH/$EIGHTH_CONTAINER_CONFIG
@@ -291,7 +330,8 @@ services:
           target: $CONTAINER_LOGS_DIR
           read_only: true
     command: >
-      sh -c "/usr/share/filebeat/create-dashboards.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${EIGHTH_CONTAINER_SERVICE_NAME} $EIGHTH_CONTAINER_POLICY_HOT_SIZE $EIGHTH_CONTAINER_POLICY_HOT_TIME $EIGHTH_CONTAINER_POLICY_DELETE_AGE
+      sh -c "/usr/share/filebeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${EIGHTH_CONTAINER_SERVICE_NAME} $EIGHTH_CONTAINER_POLICY_HOT_SIZE $EIGHTH_CONTAINER_POLICY_HOT_TIME $EIGHTH_CONTAINER_POLICY_DELETE_AGE
+      && /usr/share/filebeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${EIGHTH_CONTAINER_SERVICE_NAME} $EIGHTH_CONTAINER_TIMESTAMP_FIELD
       && filebeat --strict.perms=false"          
     networks:
       - beats
@@ -316,8 +356,12 @@ services:
           # target: /usr/share/filebeat9/logs
 
         - type: bind
-          source: $ROOT_PATH/$CONTAINER_DASBOARDS_CREATES
-          target: /usr/share/filebeat/create-dashboards.sh
+          source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
+          target: /usr/share/filebeat/policy-create.sh
+
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
+          target: /usr/share/filebeat/pattern-create.sh
 
         - type: bind
           source: $ROOT_PATH/$NINTH_CONTAINER_CONFIG
@@ -328,7 +372,8 @@ services:
           target: $CONTAINER_LOGS_DIR
           read_only: true
     command: >
-      sh -c "/usr/share/filebeat/create-dashboards.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${NINTH_CONTAINER_SERVICE_NAME} $NINTH_CONTAINER_POLICY_HOT_SIZE $NINTH_CONTAINER_POLICY_HOT_TIME $NINTH_CONTAINER_POLICY_DELETE_AGE
+      sh -c "/usr/share/filebeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${NINTH_CONTAINER_SERVICE_NAME} $NINTH_CONTAINER_POLICY_HOT_SIZE $NINTH_CONTAINER_POLICY_HOT_TIME $NINTH_CONTAINER_POLICY_DELETE_AGE
+      && /usr/share/filebeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${NINTH_CONTAINER_SERVICE_NAME} $NINTH_CONTAINER_TIMESTAMP_FIELD
       && filebeat --strict.perms=false"          
     networks:
       - beats
@@ -353,8 +398,12 @@ services:
           # target: /usr/share/filebeat10/logs
 
         - type: bind
-          source: $ROOT_PATH/$CONTAINER_DASBOARDS_CREATES
-          target: /usr/share/filebeat/create-dashboards.sh
+          source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
+          target: /usr/share/filebeat/policy-create.sh
+
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
+          target: /usr/share/filebeat/pattern-create.sh
 
         - type: bind
           source: $ROOT_PATH/$TENTH_CONTAINER_CONFIG
@@ -365,7 +414,8 @@ services:
           target: $CONTAINER_LOGS_DIR
           read_only: true
     command: >
-      sh -c "/usr/share/filebeat/create-dashboards.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${TENTH_CONTAINER_SERVICE_NAME} $TENTH_CONTAINER_POLICY_HOT_SIZE $TENTH_CONTAINER_POLICY_HOT_TIME $TENTH_CONTAINER_POLICY_DELETE_AGE
+      sh -c "/usr/share/filebeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${TENTH_CONTAINER_SERVICE_NAME} $TENTH_CONTAINER_POLICY_HOT_SIZE $TENTH_CONTAINER_POLICY_HOT_TIME $TENTH_CONTAINER_POLICY_DELETE_AGE
+      && /usr/share/filebeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${TENTH_CONTAINER_SERVICE_NAME} $TENTH_CONTAINER_TIMESTAMP_FIELD
       && filebeat --strict.perms=false"          
     networks:
       - beats
@@ -390,8 +440,12 @@ services:
           # target: /usr/share/filebeat11/logs
 
         - type: bind
-          source: $ROOT_PATH/$CONTAINER_DASBOARDS_CREATES
-          target: /usr/share/filebeat/create-dashboards.sh
+          source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
+          target: /usr/share/filebeat/policy-create.sh
+
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
+          target: /usr/share/filebeat/pattern-create.sh
 
         - type: bind
           source: $ROOT_PATH/$ELEVENTH_CONTAINER_CONFIG
@@ -402,7 +456,8 @@ services:
           target: $CONTAINER_LOGS_DIR
           read_only: true
     command: >
-      sh -c "/usr/share/filebeat/create-dashboards.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${ELEVENTH_CONTAINER_SERVICE_NAME} $ELEVENTH_CONTAINER_POLICY_HOT_SIZE $ELEVENTH_CONTAINER_POLICY_HOT_TIME $ELEVENTH_CONTAINER_POLICY_DELETE_AGE
+      sh -c "/usr/share/filebeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${ELEVENTH_CONTAINER_SERVICE_NAME} $ELEVENTH_CONTAINER_POLICY_HOT_SIZE $ELEVENTH_CONTAINER_POLICY_HOT_TIME $ELEVENTH_CONTAINER_POLICY_DELETE_AGE
+      && /usr/share/filebeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${ELEVENTH_CONTAINER_SERVICE_NAME} $ELEVENTH_CONTAINER_TIMESTAMP_FIELD
       && filebeat --strict.perms=false"          
     networks:
       - beats
@@ -429,9 +484,13 @@ services:
           target: /usr/share/metricbeat/metricbeat.yml
  
         - type: bind
-          source: $ROOT_PATH/$CONTAINER_DASBOARDS_CREATES
-          target: /usr/share/metricbeat/create-dashboards.sh
+          source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
+          target: /usr/share/metricbeat/policy-create.sh
           
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
+          target: /usr/share/metricbeat/pattern-create.sh
+
         - type: bind
           source: /var/run/docker.sock
           target: /var/run/docker.sock
@@ -452,7 +511,8 @@ services:
           target: /hostfs
           read_only: true
     command: > 
-      sh -c "/usr/share/metricbeat/create-dashboards.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-metrics $METRICBEAT_CONTAINER_POLICY_HOT_SIZE $METRICBEAT_CONTAINER_POLICY_HOT_TIME $METRICBEAT_CONTAINER_POLICY_DELETE_AGE
+      sh -c "/usr/share/metricbeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-metrics $METRICBEAT_CONTAINER_POLICY_HOT_SIZE $METRICBEAT_CONTAINER_POLICY_HOT_TIME $METRICBEAT_CONTAINER_POLICY_DELETE_AGE
+      && /usr/share/metricbeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-metrics $METRICBEAT_CONTAINER_TIMESTAMP_FIELD
       && metricbeat --strict.perms=false
       && metricbeat -system.hostfs=/hostfs"
     networks:
@@ -476,16 +536,20 @@ services:
           # target: /usr/share/heartbeat/logs
 
         - type: bind
-          source: $ROOT_PATH/$CONTAINER_DASBOARDS_CREATES
-          target: /usr/share/metricbeat/create-dashboards.sh
+          source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
+          target: /usr/share/heartbeat/policy-create.sh
+
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
+          target: /usr/share/heartbeat/pattern-create.sh
 
         - type: bind
           source: $ROOT_PATH/$HEARTBEAT_CONTAINER_CONFIG
           target: /usr/share/heartbeat/heartbeat.yml
     command: >
-      sh -c "/usr/share/metricbeat/create-dashboards.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-metrics $HEARTBEAT_CONTAINER_POLICY_HOT_SIZE $HEARTBEAT_CONTAINER_POLICY_HOT_TIME $HEARTBEAT_CONTAINER_POLICY_DELETE_AGE
-      && heartbeat --strict.perms=false
-      "
+      sh -c "/usr/share/heartbeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-heartbeat $HEARTBEAT_CONTAINER_POLICY_HOT_SIZE $HEARTBEAT_CONTAINER_POLICY_HOT_TIME $HEARTBEAT_CONTAINER_POLICY_DELETE_AGE
+      && /usr/share/heartbeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-heartbeat $HEARTBEAT_CONTAINER_TIMESTAMP_FIELD
+      && heartbeat --strict.perms=false"
     networks:
       - beats
           

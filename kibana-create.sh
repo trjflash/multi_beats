@@ -1,0 +1,2 @@
+#!/bin/sh
+curl --user elastic:changeme -XPUT "http://"$1"/_ilm/policy/"$2"" -H 'Content-Type: application/json' -d '{"policy":{"phases":{"hot":{"min_age":"0ms","actions":{"rollover":{"max_size":"'$3'","max_age":"'$4'"}}},"warm":{"min_age":"0d","actions":{"set_priority":{"priority":50}}},"delete":{"min_age":"'$5'","actions":{"delete":{"delete_searchable_snapshot":true}}}}}}' &>/dev/null

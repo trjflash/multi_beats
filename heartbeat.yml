@@ -50,5 +50,5 @@ setup.template.settings.index.lifecycle.name: "magnum-${STAGE_NAME}-heartbeat"
 setup.ilm.enabled: auto
 setup.ilm.rollover_alias: "magnum-${STAGE_NAME}-heartbeat-%{+yyyy.MM}"
 setup.ilm.pattern: "000001"
-logging.to_files: ${metrics_TO_FILE}
+logging.to_files: ${LOGS_TO_FILE}
 logging.level: ${ERROR_LEVEL}

@@ -553,6 +553,32 @@ services:
     networks:
       - beats
           
+  elastalert:
+    image: ivankrizsan/elastalert:latest
+    container_name: $ELASTALERT_CONTAINER
+    user: root
+    environment:
+      - SET_CONTAINER_TIMEZONE=true
+      - CONTAINER_TIMEZONE=Asia/Almaty
+      - ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST_ONLY
+      - ELASTICSEARCH_USER=$ELASTIC_USER
+      - ELASTICSEARCH_PASSWORD=$ELASTIC_PASSWORD
+
+    volumes:
+          # - type: bind
+          # source: $ROOT_PATH/$ELASTALERT_LOGS_DIR
+          # target: /opt/logs
+
+        - type: bind
+          source: $ROOT_PATH/$ELASTALERT_CONFIGS_DIR
+          target: /opt/config
+
+        - type: bind
+          source: $ROOT_PATH/$ELASTALERT_RULES_DIR
+          target: /opt/rules
+    networks:
+      - beats
+          
 networks:
   beats:
     name: beats

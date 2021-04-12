@@ -1,0 +1,21 @@
+name: "zmart_kz_heartbeat"
+description: "zmart.kz heartbeat"
+severity: "warning"
+
+index: heartbeat-*
+filter:
+- query:
+    query_string:
+      query: "monitor.status:up AND monitor.name:zmart.kz"
+
+type: flatline
+threshold: 1
+use_kibana4_dashboard: "/_plugin/kibana/#/dashboard"
+timeframe:
+  minutes: 2
+realert:
+  minutes: 5
+
+alert: "slack"
+slack:
+slack_webhook_url: "https://hooks.slack.com/services/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"

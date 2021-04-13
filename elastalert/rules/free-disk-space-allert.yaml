@@ -1,0 +1,29 @@
+name: "CRITICAL : Disk Usage Alert"
+description: "zmart.kz running out of free disk space"
+severity: "warning"
+
+index: magnum-prod-metrics*
+filter:
+- query:
+    query_string:
+      query: "system.filesystem.used.pct >= 0.8 AND system.filesystem.used.pct < 1"
+
+type: flatline
+threshold: 1
+timeframe:
+  minutes: 1
+realert:
+  minutes: 1
+
+alert: "slack"
+slack:
+alert_text: "
+*Used %*        : More than 80%\n
+*Host*          : zmart.kz MagnumGO \n
+*ElastAlert Node*  : zmart.kz es.ecomm.kz"
+alert_text_type: alert_text_only
+alert_text_args: ["system.filesystem.used.pct","host","system.filesystem.mount_point"]
+
+slack_webhook_url: $slack_channel_url
+slack_emoji_override: ":heavy_exclamation_mark:"
+slack_webhook_url: "https://hooks.slack.com/services/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"

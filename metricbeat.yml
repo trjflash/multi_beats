@@ -2,7 +2,7 @@ metricbeat.config:
   modules:
     path: ${path.config}/modules.d/*.yml
     reload.enabled: false
-name: "ec-auth-metrics"
+name: '${METRICS_HOST_NAME}'
 metricbeat.modules:
   - module: system
     metricsets:

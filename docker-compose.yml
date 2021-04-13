@@ -14,6 +14,7 @@ services:
       - LOGS_TO_FILE=$LOGS_TO_FILE
       - ERROR_LEVEL=$ERROR_LEVEL
       - STAGE_NAME=$STAGE_NAME
+      
     volumes:
           # - type: bind
           # source: $ROOT_PATH/filebeat1/logs
@@ -474,6 +475,8 @@ services:
       - LOGS_TO_FILE=$LOGS_TO_FILE
       - ERROR_LEVEL=$ERROR_LEVEL
       - STAGE_NAME=$STAGE_NAME
+      - METRICS_HOST_NAME=$METRICS_HOST_NAME
+
     volumes:
         # - type: bind
           # source: $ROOT_PATH/metricbeat/logs

@@ -5,22 +5,19 @@ metricbeat.config:
 name: '${METRICS_HOST_NAME}'
 metricbeat.modules:
   - module: system
-    metricsets:
-      - cpu             # CPU usage
-      - load            # CPU load averages
-      - memory          # Memory usage
-      - network         # Network IO
-      - process         # Per process metrics
-      - process_summary # Process summary
-      - uptime          # System Uptime
-      - socket_summary  # Socket summary
-      - diskio         # Disk IO
-      - fsstat         # File system summary metrics
+    metricsets: ["cpu", "load", "filesystem", "fsstat", "memory", "network", "process", "core", "diskio", "socket"]
+    period: 5s
     enabled: true
-    period: 20m
     processes: ['.*']
-    cpu.metrics: [ "percentages","normalized_percentages" ]  # The other available option is ticks.
-    core.metrics: [ "percentages" ]
+  
+    cpu.metrics:  ["percentages"]
+    core.metrics: ["percentages"]
+  
+  - module: docker
+    metricsets: ["container", "cpu", "diskio", "healthcheck", "info", "memory", "network"]
+    hosts: ["unix:///var/run/docker.sock"]
+    enabled: true
+    period: 5s
 setup.kibana:
   host: '${KIBANA_HOST}'
 setup.dashboards.enabled: true
@@ -40,5 +37,5 @@ setup.template.settings.index.lifecycle.name: "magnum-${STAGE_NAME}-metrics"
 setup.ilm.enabled: auto
 setup.ilm.rollover_alias: "magnum-${STAGE_NAME}-metrics-%{+yyyy.MM}"
 setup.ilm.pattern: "000001"
-logging.to_files: ${LOGS_TO_FILE}
-logging.level: ${ERROR_LEVEL}
+# logging.to_files: ${LOGS_TO_FILE}
+# logging.level: ${ERROR_LEVEL}

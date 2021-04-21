@@ -1,591 +1,591 @@
 version: '3.8'
 services:
-  # filebeat01:
-    # image: docker.elastic.co/beats/filebeat:$elastic_version
-    # container_name: $first_container
-    # user: root
-    # environment:
-      # - elasticsearch_host=$elasticsearch_host
-      # - kibana_host=$kibana_host
-      # - elasticsearch_username=$elastic_user
-      # - elasticsearch_password=$elastic_password
-      # - container_logs_dir=$container_logs_dir/elk_logs/
-      # - service_name=$first_container_service_name
-      # - logs_to_file=$logs_to_file
-      # - error_level=$error_level
-      # - stage_name=$stage_name
-      
-    # volumes:
-          # # - type: bind
-          # # source: $root_path/filebeat1/logs
-          # # target: /usr/share/filebeat1/logs
-
-        # - type: bind
-          # source: $root_path/$container_policy_creates
-          # target: /usr/share/filebeat/policy-create.sh
-          
-        # - type: bind
-          # source: $root_path/$container_pattern_creates
-          # target: /usr/share/filebeat/pattern-create.sh
-
-        # - type: bind
-          # source: $root_path/$first_container_config
-          # target: /usr/share/filebeat/filebeat.yml
-          
-        # - type: bind
-          # source: $root_path/$first_container_logs
-          # target: $container_logs_dir
-          # read_only: true     
-          
-        # - type: bind
-          # source: /var/run/docker.sock
-          # target: /var/run/docker.sock
-          # read_only: true
-          
-    # command: >
-      # sh -c "/usr/share/filebeat/policy-create.sh $elasticsearch_host magnum-${stage_name}-logs-${first_container_service_name} $first_container_policy_hot_size $first_container_policy_hot_time $first_container_policy_delete_age
-      # && /usr/share/filebeat/pattern-create.sh $elasticsearch_host magnum-${stage_name}-logs-${first_container_service_name} $first_container_timestamp_field
-      # && filebeat --strict.perms=false"          
-    # network_mode: host
-
-  # filebeat02:
-    # image: docker.elastic.co/beats/filebeat:$elastic_version
-    # container_name: $second_container
-    # user: root
-    # environment:
-      # - elasticsearch_host=$elasticsearch_host
-      # - kibana_host=$kibana_host
-      # - elasticsearch_username=$elastic_user
-      # - elasticsearch_password=$elastic_password
-      # - container_logs_dir=$container_logs_dir/elk_logs/
-      # - service_name=$second_container_service_name
-      # - logs_to_file=$logs_to_file
-      # - error_level=$error_level
-      # - stage_name=$stage_name
-    # volumes:
-          # # - type: bind
-          # # source: $root_path/filebeat2/logs
-          # # target: /usr/share/filebeat2/logs
-
-        # - type: bind
-          # source: $root_path/$container_policy_creates
-          # target: /usr/share/filebeat/policy-create.sh      
-          
-        # - type: bind
-          # source: $root_path/$container_pattern_creates
-          # target: /usr/share/filebeat/pattern-create.sh
-
-        # - type: bind
-          # source: $root_path/$second_container_config
-          # target: /usr/share/filebeat/filebeat.yml
-          
-        # - type: bind
-          # source: $root_path/$second_container_logs
-          # target: $container_logs_dir
-          # read_only: true
-    # command: >
-      # sh -c "/usr/share/filebeat/policy-create.sh $elasticsearch_host magnum-${stage_name}-logs-${second_container_service_name} $second_container_policy_hot_size $second_container_policy_hot_time $second_container_policy_delete_age
-      # && /usr/share/filebeat/pattern-create.sh $elasticsearch_host magnum-${stage_name}-logs-${second_container_service_name} $second_container_timestamp_field
-      # && filebeat --strict.perms=false"          
-    # networks:
-      # - beats
-      
-  # filebeat03:
-    # image: docker.elastic.co/beats/filebeat:$elastic_version
-    # container_name: $third_container
-    # user: root
-    # environment:
-      # - elasticsearch_host=$elasticsearch_host
-      # - kibana_host=$kibana_host
-      # - elasticsearch_username=$elastic_user
-      # - elasticsearch_password=$elastic_password
-      # - container_logs_dir=$container_logs_dir/elk_logs/
-      # - service_name=$third_container_service_name
-      # - logs_to_file=$logs_to_file
-      # - error_level=$error_level
-      # - stage_name=$stage_name
-    # volumes:
-          # # - type: bind
-          # # source: $root_path/filebeat3/logs
-          # # target: /usr/share/filebeat3/logs
-
-        # - type: bind
-          # source: $root_path/$container_policy_creates
-          # target: /usr/share/filebeat/policy-create.sh
-
-        # - type: bind
-          # source: $root_path/$container_pattern_creates
-          # target: /usr/share/filebeat/pattern-create.sh
-
-        # - type: bind
-          # source: $root_path/$third_container_config
-          # target: /usr/share/filebeat/filebeat.yml
-          
-        # - type: bind
-          # source: $root_path/$third_container_logs
-          # target: $container_logs_dir
-          # read_only: true
-    # command: >
-      # sh -c "/usr/share/filebeat/policy-create.sh $elasticsearch_host magnum-${stage_name}-logs-${third_container_service_name} $third_container_policy_hot_size $third_container_policy_hot_time $third_container_policy_delete_age
-      # && /usr/share/filebeat/pattern-create.sh $elasticsearch_host magnum-${stage_name}-logs-${third_container_service_name} $third_container_timestamp_field
-      # && filebeat --strict.perms=false"          
-    # networks:
-      # - beats
-      
-  # filebeat04:
-    # image: docker.elastic.co/beats/filebeat:$elastic_version
-    # container_name: $fourth_container
-    # user: root
-    # environment:
-      # - elasticsearch_host=$elasticsearch_host
-      # - kibana_host=$kibana_host
-      # - elasticsearch_username=$elastic_user
-      # - elasticsearch_password=$elastic_password
-      # - container_logs_dir=$container_logs_dir/elk_logs/
-      # - service_name=$fourth_container_service_name
-      # - logs_to_file=$logs_to_file
-      # - error_level=$error_level
-      # - stage_name=$stage_name
-    # volumes:
-          # # - type: bind
-          # # source: $root_path/filebeat4/logs
-          # # target: /usr/share/filebeat4/logs
-
-        # - type: bind
-          # source: $root_path/$container_policy_creates
-          # target: /usr/share/filebeat/policy-create.sh
-
-        # - type: bind
-          # source: $root_path/$container_pattern_creates
-          # target: /usr/share/filebeat/pattern-create.sh
-
-        # - type: bind
-          # source: $root_path/$fourth_container_config
-          # target: /usr/share/filebeat/filebeat.yml
-          
-        # - type: bind
-          # source: $root_path/$fourth_container_logs
-          # target: $container_logs_dir
-          # read_only: true
-    # command: >
-      # sh -c "/usr/share/filebeat/policy-create.sh $elasticsearch_host magnum-${stage_name}-logs-${fourth_container_service_name} $fourth_container_policy_hot_size $fourth_container_policy_hot_time $fourth_container_policy_delete_age
-      # && /usr/share/filebeat/pattern-create.sh $elasticsearch_host magnum-${stage_name}-logs-${fourth_container_service_name} $fourth_container_timestamp_field
-      # && filebeat --strict.perms=false"          
-    # networks:
-      # - beats
-      
-  # filebeat05:
-    # image: docker.elastic.co/beats/filebeat:$elastic_version
-    # container_name: $fifth_container
-    # user: root
-    # environment:
-      # - elasticsearch_host=$elasticsearch_host
-      # - kibana_host=$kibana_host
-      # - elasticsearch_username=$elastic_user
-      # - elasticsearch_password=$elastic_password
-      # - container_logs_dir=$container_logs_dir/elk_logs/
-      # - service_name=$fifth_container_service_name
-      # - logs_to_file=$logs_to_file
-      # - error_level=$error_level
-      # - stage_name=$stage_name
-    # volumes:
-          # # - type: bind
-          # # source: $root_path/filebeat5/logs
-          # # target: /usr/share/filebeat5/logs
-
-        # - type: bind
-          # source: $root_path/$container_policy_creates
-          # target: /usr/share/filebeat/policy-create.sh
-
-        # - type: bind
-          # source: $root_path/$container_pattern_creates
-          # target: /usr/share/filebeat/pattern-create.sh
-
-        # - type: bind
-          # source: $root_path/$fifth_container_config
-          # target: /usr/share/filebeat/filebeat.yml
-          
-        # - type: bind
-          # source: $root_path/$fifth_container_logs
-          # target: $container_logs_dir
-          # read_only: true
-    # command: >
-      # sh -c "/usr/share/filebeat/policy-create.sh $elasticsearch_host magnum-${stage_name}-logs-${fifth_container_service_name} $fifth_container_policy_hot_size $fifth_container_policy_hot_time $fifth_container_policy_delete_age
-      # && /usr/share/filebeat/pattern-create.sh $elasticsearch_host magnum-${stage_name}-logs-${fifth_container_service_name} $fifth_container_timestamp_field
-      # && filebeat --strict.perms=false"          
-    # networks:
-      # - beats
- 
-  # filebeat06:
-    # image: docker.elastic.co/beats/filebeat:$elastic_version
-    # container_name: $sixth_container
-    # user: root
-    # environment:
-      # - elasticsearch_host=$elasticsearch_host
-      # - kibana_host=$kibana_host
-      # - elasticsearch_username=$elastic_user
-      # - elasticsearch_password=$elastic_password
-      # - container_logs_dir=$container_logs_dir/elk_logs/
-      # - service_name=$sixth_container_service_name
-      # - logs_to_file=$logs_to_file
-      # - error_level=$error_level
-      # - stage_name=$stage_name
-    # volumes:
-          # # - type: bind
-          # # source: $root_path/filebeat6/logs
-          # # target: /usr/share/filebeat6/logs
-
-        # - type: bind
-          # source: $root_path/$container_policy_creates
-          # target: /usr/share/filebeat/policy-create.sh
-
-        # - type: bind
-          # source: $root_path/$container_pattern_creates
-          # target: /usr/share/filebeat/pattern-create.sh
-
-        # - type: bind
-          # source: $root_path/$sixth_container_config
-          # target: /usr/share/filebeat/filebeat.yml
-          
-        # - type: bind
-          # source: $root_path/$sixth_container_logs
-          # target: $container_logs_dir
-          # read_only: true
-    # command: >
-      # sh -c "/usr/share/filebeat/policy-create.sh $elasticsearch_host magnum-${stage_name}-logs-${sixth_container_service_name} $sixth_container_policy_hot_size $sixth_container_policy_hot_time $sixth_container_policy_delete_age
-      # && /usr/share/filebeat/pattern-create.sh $elasticsearch_host magnum-${stage_name}-logs-${sixth_container_service_name} $sixth_container_timestamp_field
-      # && filebeat --strict.perms=false"          
-    # networks:
-      # - beats
-
-  # filebeat07:
-    # image: docker.elastic.co/beats/filebeat:$elastic_version
-    # container_name: $seventh_container
-    # user: root
-    # environment:
-      # - elasticsearch_host=$elasticsearch_host
-      # - kibana_host=$kibana_host
-      # - elasticsearch_username=$elastic_user
-      # - elasticsearch_password=$elastic_password
-      # - container_logs_dir=$container_logs_dir/elk_logs/
-      # - service_name=$seventh_container_service_name
-      # - logs_to_file=$logs_to_file
-      # - error_level=$error_level
-      # - stage_name=$stage_name
-    # volumes:
-          # # - type: bind
-          # # source: $root_path/filebeat7/logs
-          # # target: /usr/share/filebeat7/logs
-
-        # - type: bind
-          # source: $root_path/$container_policy_creates
-          # target: /usr/share/filebeat/policy-create.sh
-
-        # - type: bind
-          # source: $root_path/$container_pattern_creates
-          # target: /usr/share/filebeat/pattern-create.sh
-
-        # - type: bind
-          # source: $root_path/$seventh_container_config
-          # target: /usr/share/filebeat/filebeat.yml
-          
-        # - type: bind
-          # source: $root_path/$seventh_container_logs
-          # target: $container_logs_dir
-          # read_only: true
-    # command: >
-      # sh -c "/usr/share/filebeat/policy-create.sh $elasticsearch_host magnum-${stage_name}-logs-${seventh_container_service_name} $seventh_container_policy_hot_size $seventh_container_policy_hot_time $seventh_container_policy_delete_age
-      # && /usr/share/filebeat/pattern-create.sh $elasticsearch_host magnum-${stage_name}-logs-${seventh_container_service_name} $seventh_container_timestamp_field
-      # && filebeat --strict.perms=false"          
-    # networks:
-      # - beats
-
-  # filebeat08:
-    # image: docker.elastic.co/beats/filebeat:$elastic_version
-    # container_name: $eighth_container
-    # user: root
-    # environment:
-      # - elasticsearch_host=$elasticsearch_host
-      # - kibana_host=$kibana_host
-      # - elasticsearch_username=$elastic_user
-      # - elasticsearch_password=$elastic_password
-      # - container_logs_dir=$container_logs_dir/elk_logs/
-      # - service_name=$eighth_container_service_name
-      # - logs_to_file=$logs_to_file
-      # - error_level=$error_level
-      # - stage_name=$stage_name
-    # volumes:
-          # # - type: bind
-          # # source: $root_path/filebeat8/logs
-          # # target: /usr/share/filebeat8/logs
-
-        # - type: bind
-          # source: $root_path/$container_policy_creates
-          # target: /usr/share/filebeat/policy-create.sh
-
-        # - type: bind
-          # source: $root_path/$container_pattern_creates
-          # target: /usr/share/filebeat/pattern-create.sh
-
-        # - type: bind
-          # source: $root_path/$eighth_container_config
-          # target: /usr/share/filebeat/filebeat.yml
-          
-        # - type: bind
-          # source: $root_path/$eighth_container_logs
-          # target: $container_logs_dir
-          # read_only: true
-    # command: >
-      # sh -c "/usr/share/filebeat/policy-create.sh $elasticsearch_host magnum-${stage_name}-logs-${eighth_container_service_name} $eighth_container_policy_hot_size $eighth_container_policy_hot_time $eighth_container_policy_delete_age
-      # && /usr/share/filebeat/pattern-create.sh $elasticsearch_host magnum-${stage_name}-logs-${eighth_container_service_name} $eighth_container_timestamp_field
-      # && filebeat --strict.perms=false"          
-    # networks:
-      # - beats
-
-  # filebeat09:
-    # image: docker.elastic.co/beats/filebeat:$elastic_version
-    # container_name: $ninth_container
-    # user: root
-    # environment:
-      # - elasticsearch_host=$elasticsearch_host
-      # - kibana_host=$kibana_host
-      # - elasticsearch_username=$elastic_user
-      # - elasticsearch_password=$elastic_password
-      # - container_logs_dir=$container_logs_dir/elk_logs/
-      # - service_name=$ninth_container_service_name
-      # - logs_to_file=$logs_to_file
-      # - error_level=$error_level
-      # - stage_name=$stage_name
-    # volumes:
-          # # - type: bind
-          # # source: $root_path/filebeat9/logs
-          # # target: /usr/share/filebeat9/logs
-
-        # - type: bind
-          # source: $root_path/$container_policy_creates
-          # target: /usr/share/filebeat/policy-create.sh
-
-        # - type: bind
-          # source: $root_path/$container_pattern_creates
-          # target: /usr/share/filebeat/pattern-create.sh
-
-        # - type: bind
-          # source: $root_path/$ninth_container_config
-          # target: /usr/share/filebeat/filebeat.yml
-          
-        # - type: bind
-          # source: $root_path/$ninth_container_logs
-          # target: $container_logs_dir
-          # read_only: true
-    # command: >
-      # sh -c "/usr/share/filebeat/policy-create.sh $elasticsearch_host magnum-${stage_name}-logs-${ninth_container_service_name} $ninth_container_policy_hot_size $ninth_container_policy_hot_time $ninth_container_policy_delete_age
-      # && /usr/share/filebeat/pattern-create.sh $elasticsearch_host magnum-${stage_name}-logs-${ninth_container_service_name} $ninth_container_timestamp_field
-      # && filebeat --strict.perms=false"          
-    # networks:
-      # - beats
- 
-  # filebeat10:
-    # image: docker.elastic.co/beats/filebeat:$elastic_version
-    # container_name: $tenth_container
-    # user: root
-    # environment:
-      # - elasticsearch_host=$elasticsearch_host
-      # - kibana_host=$kibana_host
-      # - elasticsearch_username=$elastic_user
-      # - elasticsearch_password=$elastic_password
-      # - container_logs_dir=$container_logs_dir/elk_logs/
-      # - service_name=$tenth_container_service_name
-      # - logs_to_file=$logs_to_file
-      # - error_level=$error_level
-      # - stage_name=$stage_name
-    # volumes:
-          # # - type: bind
-          # # source: $root_path/filebeat10/logs
-          # # target: /usr/share/filebeat10/logs
-
-        # - type: bind
-          # source: $root_path/$container_policy_creates
-          # target: /usr/share/filebeat/policy-create.sh
-
-        # - type: bind
-          # source: $root_path/$container_pattern_creates
-          # target: /usr/share/filebeat/pattern-create.sh
-
-        # - type: bind
-          # source: $root_path/$tenth_container_config
-          # target: /usr/share/filebeat/filebeat.yml
-          
-        # - type: bind
-          # source: $root_path/$tenth_container_logs
-          # target: $container_logs_dir
-          # read_only: true
-    # command: >
-      # sh -c "/usr/share/filebeat/policy-create.sh $elasticsearch_host magnum-${stage_name}-logs-${tenth_container_service_name} $tenth_container_policy_hot_size $tenth_container_policy_hot_time $tenth_container_policy_delete_age
-      # && /usr/share/filebeat/pattern-create.sh $elasticsearch_host magnum-${stage_name}-logs-${tenth_container_service_name} $tenth_container_timestamp_field
-      # && filebeat --strict.perms=false"          
-    # networks:
-      # - beats
-      
-  # filebeat11:
-    # Image: Docker.Elastic.Co/Beats/Filebeat:$Elastic_Version
-    # Container_Name: $Eleventh_Container
-    # User: Root
-    # Environment:
-      # - Elasticsearch_Host=$Elasticsearch_Host
-      # - Kibana_Host=$Kibana_Host
-      # - Elasticsearch_Username=$Elastic_User
-      # - Elasticsearch_Password=$Elastic_Password
-      # - Container_Logs_Dir=$Container_Logs_Dir/Elk_Logs/
-      # - Service_Name=$Eleventh_Container_Service_Name
-      # - Logs_To_File=$Logs_To_File
-      # - Error_Level=$Error_Level
-      # - Stage_Name=$Stage_Name
-    # Volumes:
-          # # - Type: Bind
-          # # Source: $Root_Path/Filebeat11/Logs
-          # # Target: /Usr/Share/Filebeat11/Logs
-
-        # - Type: Bind
-          # Source: $Root_Path/$Container_Policy_Creates
-          # Target: /Usr/Share/Filebeat/Policy-Create.Sh
-
-        # - Type: Bind
-          # Source: $Root_Path/$Container_Pattern_Creates
-          # Target: /Usr/Share/Filebeat/Pattern-Create.Sh
-
-        # - Type: Bind
-          # Source: $Root_Path/$Eleventh_Container_Config
-          # Target: /Usr/Share/Filebeat/Filebeat.Yml
-          
-        # - Type: Bind
-          # Source: $Root_Path/$Eleventh_Container_Logs
-          # Target: $Container_Logs_Dir
-          # Read_Only: True
-    # Command: >
-      # Sh -C "/Usr/Share/Filebeat/Policy-Create.Sh $Elasticsearch_Host Magnum-${Stage_Name}-Logs-${Eleventh_Container_Service_Name} $Eleventh_Container_Policy_Hot_Size $Eleventh_Container_Policy_Hot_Time $Eleventh_Container_Policy_Delete_Age
-      # && /Usr/Share/Filebeat/Pattern-Create.Sh $Elasticsearch_Host Magnum-${Stage_Name}-Logs-${Eleventh_Container_Service_Name} $Eleventh_Container_Timestamp_Field
-      # && Filebeat --Strict.Perms=False"          
-    # Networks:
-      # - Beats
-
-  metricbeat:
-    image: docker.elastic.co/beats/metricbeat:$ELASTIC_VERSION
-    container_name: $METRICS_CONTAINER
+  filebeat01:
+    image: docker.elastic.co/beats/filebeat:$ELASTIC_VERSION
+    container_name: $FIRST_CONTAINER
     user: root
     environment:
       - ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST
       - KIBANA_HOST=$KIBANA_HOST
-      - ELASTICSEARCH_USERNAME=$ELASTIC_USER
-      - ELASTICSEARCH_PASSWORD=$ELASTIC_PASSWORD
+      - ELASTICSEARCH_USERNAME=$ELASTICSEARCH_USERNAME
+      - ELASTICSEARCH_PASSWORD=$ELASTICSEARCH_PASSWORD
+      - CONTAINER_LOGS_DIR=$CONTAINER_LOGS_DIR/elk_logs/
+      - SERVICE_NAME=$FIRST_CONTAINER_SERVICE_NAME
       - LOGS_TO_FILE=$LOGS_TO_FILE
       - ERROR_LEVEL=$ERROR_LEVEL
       - STAGE_NAME=$STAGE_NAME
-      - METRICS_HOST_NAME=$METRICS_HOST_NAME
-
+      
     volumes:
-        # - type: bind
-          # source: $ROOT_PATH/metricbeat/logs
-          # target: /usr/share/metricbeat/logs
- 
-        - type: bind
-          source: $ROOT_PATH/$METRICBEAT_CONTAINER_CONFIG
-          target: /usr/share/metricbeat/metricbeat.yml
- 
+          # - type: bind
+          # source: $ROOT_PATH/filebeat1/logs
+          # target: /usr/share/filebeat1/logs
+
         - type: bind
           source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
-          target: /usr/share/metricbeat/policy-create.sh
+          target: /usr/share/filebeat/policy-create.sh
           
         - type: bind
           source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
-          target: /usr/share/metricbeat/pattern-create.sh
+          target: /usr/share/filebeat/pattern-create.sh
 
+        - type: bind
+          source: $ROOT_PATH/$FIRST_CONTAINER_CONFIG
+          target: /usr/share/filebeat/filebeat.yml
+          
+        - type: bind
+          source: $ROOT_PATH/$FIRST_CONTAINER_logs
+          target: $CONTAINER_LOGS_DIR
+          read_only: true     
+          
         - type: bind
           source: /var/run/docker.sock
           target: /var/run/docker.sock
           read_only: true
+          
+    command: >
+      sh -c "/usr/share/filebeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${FIRST_CONTAINER_SERVICE_NAME} $FIRST_CONTAINER_POLICY_HOT_SIZE $FIRST_CONTAINER_POLICY_HOT_TIME $FIRST_CONTAINER_POLICY_DELETE_AGE
+      && /usr/share/filebeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${FIRST_CONTAINER_SERVICE_NAME} $FIRST_CONTAINER_TIMESTAMP_FIELD
+      && filebeat --strict.perms=false"          
+    network_mode: host
 
-        - type: bind
-          source: /sys/fs/cgroup
-          target: /hostfs/sys/fs/cgroup
-          read_only: true
-          
-        - type: bind
-          source: /proc
-          target: /hostfs/proc/self
-          read_only: true   
-          
-        - type: bind
-          source: /
-          target: /hostfs
-          read_only: true
-    command: > 
-      sh -c "/usr/share/metricbeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-metrics $METRICBEAT_CONTAINER_POLICY_HOT_SIZE $METRICBEAT_CONTAINER_POLICY_HOT_TIME $METRICBEAT_CONTAINER_POLICY_DELETE_AGE
-      && /usr/share/metricbeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-metrics $METRICBEAT_CONTAINER_TIMESTAMP_FIELD
-      && metricbeat --strict.perms=false
-      && metricbeat -system.hostfs=/hostfs"
-    networks:
-      - beats
-      
-  heartbeat:
-    image: docker.elastic.co/beats/heartbeat:$ELASTIC_VERSION
-    container_name: $HEARTBEAT_CONTAINER
+  filebeat02:
+    image: docker.elastic.co/beats/filebeat:$ELASTIC_VERSION
+    container_name: $SECOND_container
     user: root
     environment:
       - ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST
       - KIBANA_HOST=$KIBANA_HOST
-      - ELASTICSEARCH_USERNAME=$ELASTIC_USER
-      - ELASTICSEARCH_PASSWORD=$ELASTIC_PASSWORD
+      - ELASTICSEARCH_USERNAME=$ELASTICSEARCH_USERNAME
+      - ELASTICSEARCH_PASSWORD=$ELASTICSEARCH_PASSWORD
+      - CONTAINER_LOGS_DIR=$CONTAINER_LOGS_DIR/elk_logs/
+      - SERVICE_NAME=$SECOND_CONTAINER_SERVICE_NAME
       - LOGS_TO_FILE=$LOGS_TO_FILE
       - ERROR_LEVEL=$ERROR_LEVEL
       - STAGE_NAME=$STAGE_NAME
     volumes:
           # - type: bind
-          # source: $ROOT_PATH/heartbeat/logs
-          # target: /usr/share/heartbeat/logs
+          # source: $ROOT_PATH/filebeat2/logs
+          # target: /usr/share/filebeat2/logs
 
         - type: bind
           source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
-          target: /usr/share/heartbeat/policy-create.sh
+          target: /usr/share/filebeat/policy-create.sh      
+          
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
+          target: /usr/share/filebeat/pattern-create.sh
+
+        - type: bind
+          source: $ROOT_PATH/$SECOND_CONTAINER_CONFIG
+          target: /usr/share/filebeat/filebeat.yml
+          
+        - type: bind
+          source: $ROOT_PATH/$SECOND_CONTAINER_LOGS
+          target: $CONTAINER_LOGS_DIR
+          read_only: true
+    command: >
+      sh -c "/usr/share/filebeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${SECOND_CONTAINER_SERVICE_NAME} $SECOND_CONTAINER_POLICY_HOT_SIZE $SECOND_CONTAINER_POLICY_HOT_TIME $SECOND_CONTAINER_POLICY_DELETE_AGE
+      && /usr/share/filebeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${SECOND_CONTAINER_SERVICE_NAME} $SECOND_CONTAINER_TIMESTAMP_FIELD
+      && filebeat --strict.perms=false"          
+    networks:
+      - beats
+      
+  filebeat03:
+    image: docker.elastic.co/beats/filebeat:$ELASTIC_VERSION
+    container_name: $third_container
+    user: root
+    environment:
+      - ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST
+      - KIBANA_HOST=$KIBANA_HOST
+      - ELASTICSEARCH_USERNAME=$ELASTICSEARCH_USERNAME
+      - ELASTICSEARCH_PASSWORD=$ELASTICSEARCH_PASSWORD
+      - CONTAINER_LOGS_DIR=$CONTAINER_LOGS_DIR/elk_logs/
+      - SERVICE_NAME=$THIRD_CONTAINER_SERVICE_NAME
+      - LOGS_TO_FILE=$LOGS_TO_FILE
+      - ERROR_LEVEL=$ERROR_LEVEL
+      - STAGE_NAME=$STAGE_NAME
+    volumes:
+          # - type: bind
+          # source: $ROOT_PATH/filebeat3/logs
+          # target: /usr/share/filebeat3/logs
+
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
+          target: /usr/share/filebeat/policy-create.sh
 
         - type: bind
           source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
-          target: /usr/share/heartbeat/pattern-create.sh
+          target: /usr/share/filebeat/pattern-create.sh
 
         - type: bind
-          source: $ROOT_PATH/$HEARTBEAT_CONTAINER_CONFIG
-          target: /usr/share/heartbeat/heartbeat.yml
+          source: $ROOT_PATH/$THIRD_CONTAINER_CONFIG
+          target: /usr/share/filebeat/filebeat.yml
+          
+        - type: bind
+          source: $ROOT_PATH/$THIRD_CONTAINER_LOGS
+          target: $CONTAINER_LOGS_DIR
+          read_only: true
     command: >
-      sh -c "/usr/share/heartbeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-heartbeat $HEARTBEAT_CONTAINER_POLICY_HOT_SIZE $HEARTBEAT_CONTAINER_POLICY_HOT_TIME $HEARTBEAT_CONTAINER_POLICY_DELETE_AGE
-      && /usr/share/heartbeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-heartbeat $HEARTBEAT_CONTAINER_TIMESTAMP_FIELD
-      && heartbeat --strict.perms=false"
+      sh -c "/usr/share/filebeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${THIRD_CONTAINER_SERVICE_NAME} $THIRD_CONTAINER_POLICY_HOT_SIZE $THIRD_CONTAINER_POLICY_HOT_TIME $THIRD_CONTAINER_POLICY_DELETE_AGE
+      && /usr/share/filebeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${THIRD_CONTAINER_SERVICE_NAME} $THIRD_CONTAINER_TIMESTAMP_FIELD
+      && filebeat --strict.perms=false"          
     networks:
       - beats
-          
-  elastalert:
-    image: ivankrizsan/elastalert:latest
-    container_name: $ELASTALERT_CONTAINER
+      
+  filebeat04:
+    image: docker.elastic.co/beats/filebeat:$ELASTIC_VERSION
+    container_name: $fourth_container
     user: root
     environment:
-      - SET_CONTAINER_TIMEZONE=true
-      - CONTAINER_TIMEZONE=Asia/Almaty
-      - ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST_ONLY
-      - ELASTICSEARCH_USER=$ELASTIC_USER
-      - ELASTICSEARCH_PASSWORD=$ELASTIC_PASSWORD
-
+      - ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST
+      - KIBANA_HOST=$KIBANA_HOST
+      - ELASTICSEARCH_USERNAME=$ELASTICSEARCH_USERNAME
+      - ELASTICSEARCH_PASSWORD=$ELASTICSEARCH_PASSWORD
+      - CONTAINER_LOGS_DIR=$CONTAINER_LOGS_DIR/elk_logs/
+      - SERVICE_NAME=$fourth_CONTAINER_SERVICE_NAME
+      - LOGS_TO_FILE=$LOGS_TO_FILE
+      - ERROR_LEVEL=$ERROR_LEVEL
+      - STAGE_NAME=$STAGE_NAME
     volumes:
           # - type: bind
-          # source: $ROOT_PATH/$ELASTALERT_LOGS_DIR
-          # target: /opt/logs
+          # source: $ROOT_PATH/filebeat4/logs
+          # target: /usr/share/filebeat4/logs
 
         - type: bind
-          source: $ROOT_PATH/$ELASTALERT_CONFIGS_DIR
-          target: /opt/config
+          source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
+          target: /usr/share/filebeat/policy-create.sh
 
         - type: bind
-          source: $ROOT_PATH/$ELASTALERT_RULES_DIR
-          target: /opt/rules
+          source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
+          target: /usr/share/filebeat/pattern-create.sh
+
+        - type: bind
+          source: $ROOT_PATH/$FOURTH_CONTAINER_CONFIG
+          target: /usr/share/filebeat/filebeat.yml
+          
+        - type: bind
+          source: $ROOT_PATH/$FOURTH_CONTAINER_LOGS
+          target: $CONTAINER_LOGS_DIR
+          read_only: true
+    command: >
+      sh -c "/usr/share/filebeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${FOURTH_CONTAINER_SERVICE_NAME} $FOURTH_CONTAINER_POLICY_HOT_SIZE $FOURTH_CONTAINER_POLICY_HOT_TIME $FOURTH_CONTAINER_POLICY_DELETE_AGE
+      && /usr/share/filebeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${FOURTH_CONTAINER_SERVICE_NAME} $FOURTH_CONTAINER_TIMESTAMP_FIELD
+      && filebeat --strict.perms=false"          
     networks:
       - beats
+      
+  filebeat05:
+    image: docker.elastic.co/beats/filebeat:$ELASTIC_VERSION
+    container_name: $FIFTH_container
+    user: root
+    environment:
+      - ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST
+      - KIBANA_HOST=$KIBANA_HOST
+      - ELASTICSEARCH_USERNAME=$ELASTICSEARCH_USERNAME
+      - ELASTICSEARCH_PASSWORD=$ELASTICSEARCH_PASSWORD
+      - CONTAINER_LOGS_DIR=$CONTAINER_LOGS_DIR/elk_logs/
+      - SERVICE_NAME=$FIFTH_CONTAINER_SERVICE_NAME
+      - LOGS_TO_FILE=$LOGS_TO_FILE
+      - ERROR_LEVEL=$ERROR_LEVEL
+      - STAGE_NAME=$STAGE_NAME
+    volumes:
+          # - type: bind
+          # source: $ROOT_PATH/filebeat5/logs
+          # target: /usr/share/filebeat5/logs
+
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
+          target: /usr/share/filebeat/policy-create.sh
+
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
+          target: /usr/share/filebeat/pattern-create.sh
+
+        - type: bind
+          source: $ROOT_PATH/$FIFTH_CONTAINER_CONFIG
+          target: /usr/share/filebeat/filebeat.yml
+          
+        - type: bind
+          source: $ROOT_PATH/$FIFTH_CONTAINER_LOGS
+          target: $CONTAINER_LOGS_DIR
+          read_only: true
+    command: >
+      sh -c "/usr/share/filebeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${FIFTH_CONTAINER_SERVICE_NAME} $FIFTH_CONTAINER_POLICY_HOT_SIZE $FIFTH_CONTAINER_POLICY_HOT_TIME $FIFTH_CONTAINER_POLICY_DELETE_AGE
+      && /usr/share/filebeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${FIFTH_CONTAINER_SERVICE_NAME} $FIFTH_CONTAINER_TIMESTAMP_FIELD
+      && filebeat --strict.perms=false"          
+    networks:
+      - beats
+ 
+  filebeat06:
+    image: docker.elastic.co/beats/filebeat:$ELASTIC_VERSION
+    container_name: $SIXTH_container
+    user: root
+    environment:
+      - ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST
+      - KIBANA_HOST=$KIBANA_HOST
+      - ELASTICSEARCH_USERNAME=$ELASTICSEARCH_USERNAME
+      - ELASTICSEARCH_PASSWORD=$ELASTICSEARCH_PASSWORD
+      - CONTAINER_LOGS_DIR=$CONTAINER_LOGS_DIR/elk_logs/
+      - SERVICE_NAME=$SIXTH_CONTAINER_SERVICE_NAME
+      - LOGS_TO_FILE=$LOGS_TO_FILE
+      - ERROR_LEVEL=$ERROR_LEVEL
+      - STAGE_NAME=$STAGE_NAME
+    volumes:
+          # - type: bind
+          # source: $ROOT_PATH/filebeat6/logs
+          # target: /usr/share/filebeat6/logs
+
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
+          target: /usr/share/filebeat/policy-create.sh
+
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
+          target: /usr/share/filebeat/pattern-create.sh
+
+        - type: bind
+          source: $ROOT_PATH/$SIXTH_CONTAINER_CONFIG
+          target: /usr/share/filebeat/filebeat.yml
+          
+        - type: bind
+          source: $ROOT_PATH/$SIXTH_CONTAINER_LOGS
+          target: $CONTAINER_LOGS_DIR
+          read_only: true
+    command: >
+      sh -c "/usr/share/filebeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${SIXTH_CONTAINER_SERVICE_NAME} $SIXTH_CONTAINER_POLICY_HOT_SIZE $SIXTH_CONTAINER_POLICY_HOT_TIME $SIXTH_CONTAINER_POLICY_DELETE_AGE
+      && /usr/share/filebeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${SIXTH_CONTAINER_SERVICE_NAME} $SIXTH_CONTAINER_TIMESTAMP_FIELD
+      && filebeat --strict.perms=false"          
+    networks:
+      - beats
+
+  filebeat07:
+    image: docker.elastic.co/beats/filebeat:$ELASTIC_VERSION
+    container_name: $SEVENTH_container
+    user: root
+    environment:
+      - ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST
+      - KIBANA_HOST=$KIBANA_HOST
+      - ELASTICSEARCH_USERNAME=$ELASTICSEARCH_USERNAME
+      - ELASTICSEARCH_PASSWORD=$ELASTICSEARCH_PASSWORD
+      - CONTAINER_LOGS_DIR=$CONTAINER_LOGS_DIR/elk_logs/
+      - SERVICE_NAME=$SEVENTH_CONTAINER_SERVICE_NAME
+      - LOGS_TO_FILE=$LOGS_TO_FILE
+      - ERROR_LEVEL=$ERROR_LEVEL
+      - STAGE_NAME=$STAGE_NAME
+    volumes:
+          # - type: bind
+          # source: $ROOT_PATH/filebeat7/logs
+          # target: /usr/share/filebeat7/logs
+
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
+          target: /usr/share/filebeat/policy-create.sh
+
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
+          target: /usr/share/filebeat/pattern-create.sh
+
+        - type: bind
+          source: $ROOT_PATH/$SEVENTH_CONTAINER_CONFIG
+          target: /usr/share/filebeat/filebeat.yml
+          
+        - type: bind
+          source: $ROOT_PATH/$SEVENTH_CONTAINER_LOGS
+          target: $CONTAINER_LOGS_DIR
+          read_only: true
+    command: >
+      sh -c "/usr/share/filebeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${SEVENTH_CONTAINER_SERVICE_NAME} $SEVENTH_CONTAINER_POLICY_HOT_SIZE $SEVENTH_CONTAINER_POLICY_HOT_TIME $SEVENTH_CONTAINER_POLICY_DELETE_AGE
+      && /usr/share/filebeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${SEVENTH_CONTAINER_SERVICE_NAME} $SEVENTH_CONTAINER_TIMESTAMP_FIELD
+      && filebeat --strict.perms=false"          
+    networks:
+      - beats
+
+  filebeat08:
+    image: docker.elastic.co/beats/filebeat:$ELASTIC_VERSION
+    container_name: $EIGHTH_container
+    user: root
+    environment:
+      - ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST
+      - KIBANA_HOST=$KIBANA_HOST
+      - ELASTICSEARCH_USERNAME=$ELASTICSEARCH_USERNAME
+      - ELASTICSEARCH_PASSWORD=$ELASTICSEARCH_PASSWORD
+      - CONTAINER_LOGS_DIR=$CONTAINER_LOGS_DIR/elk_logs/
+      - SERVICE_NAME=$EIGHTH_CONTAINER_SERVICE_NAME
+      - LOGS_TO_FILE=$LOGS_TO_FILE
+      - ERROR_LEVEL=$ERROR_LEVEL
+      - STAGE_NAME=$STAGE_NAME
+    volumes:
+          # - type: bind
+          # source: $ROOT_PATH/filebeat8/logs
+          # target: /usr/share/filebeat8/logs
+
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
+          target: /usr/share/filebeat/policy-create.sh
+
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
+          target: /usr/share/filebeat/pattern-create.sh
+
+        - type: bind
+          source: $ROOT_PATH/$EIGHTH_CONTAINER_CONFIG
+          target: /usr/share/filebeat/filebeat.yml
+          
+        - type: bind
+          source: $ROOT_PATH/$EIGHTH_CONTAINER_LOGS
+          target: $CONTAINER_LOGS_DIR
+          read_only: true
+    command: >
+      sh -c "/usr/share/filebeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${EIGHTH_CONTAINER_SERVICE_NAME} $EIGHTH_CONTAINER_POLICY_HOT_SIZE $EIGHTH_CONTAINER_POLICY_HOT_TIME $EIGHTH_CONTAINER_POLICY_DELETE_AGE
+      && /usr/share/filebeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${EIGHTH_CONTAINER_SERVICE_NAME} $EIGHTH_CONTAINER_TIMESTAMP_FIELD
+      && filebeat --strict.perms=false"          
+    networks:
+      - beats
+
+  filebeat09:
+    image: docker.elastic.co/beats/filebeat:$ELASTIC_VERSION
+    container_name: $NINTH_container
+    user: root
+    environment:
+      - ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST
+      - KIBANA_HOST=$KIBANA_HOST
+      - ELASTICSEARCH_USERNAME=$ELASTICSEARCH_USERNAME
+      - ELASTICSEARCH_PASSWORD=$ELASTICSEARCH_PASSWORD
+      - CONTAINER_LOGS_DIR=$CONTAINER_LOGS_DIR/elk_logs/
+      - SERVICE_NAME=$NINTH_CONTAINER_SERVICE_NAME
+      - LOGS_TO_FILE=$LOGS_TO_FILE
+      - ERROR_LEVEL=$ERROR_LEVEL
+      - STAGE_NAME=$STAGE_NAME
+    volumes:
+          # - type: bind
+          # source: $ROOT_PATH/filebeat9/logs
+          # target: /usr/share/filebeat9/logs
+
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
+          target: /usr/share/filebeat/policy-create.sh
+
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
+          target: /usr/share/filebeat/pattern-create.sh
+
+        - type: bind
+          source: $ROOT_PATH/$NINTH_CONTAINER_CONFIG
+          target: /usr/share/filebeat/filebeat.yml
+          
+        - type: bind
+          source: $ROOT_PATH/$NINTH_CONTAINER_LOGS
+          target: $CONTAINER_LOGS_DIR
+          read_only: true
+    command: >
+      sh -c "/usr/share/filebeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${NINTH_CONTAINER_SERVICE_NAME} $NINTH_CONTAINER_POLICY_HOT_SIZE $NINTH_CONTAINER_POLICY_HOT_TIME $NINTH_CONTAINER_POLICY_DELETE_AGE
+      && /usr/share/filebeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${NINTH_CONTAINER_SERVICE_NAME} $NINTH_CONTAINER_TIMESTAMP_FIELD
+      && filebeat --strict.perms=false"          
+    networks:
+      - beats
+ 
+  filebeat10:
+    image: docker.elastic.co/beats/filebeat:$ELASTIC_VERSION
+    container_name: $TENTH_container
+    user: root
+    environment:
+      - ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST
+      - KIBANA_HOST=$KIBANA_HOST
+      - ELASTICSEARCH_USERNAME=$ELASTICSEARCH_USERNAME
+      - ELASTICSEARCH_PASSWORD=$ELASTICSEARCH_PASSWORD
+      - CONTAINER_LOGS_DIR=$CONTAINER_LOGS_DIR/elk_logs/
+      - SERVICE_NAME=$TENTH_CONTAINER_SERVICE_NAME
+      - LOGS_TO_FILE=$LOGS_TO_FILE
+      - ERROR_LEVEL=$ERROR_LEVEL
+      - STAGE_NAME=$STAGE_NAME
+    volumes:
+          # - type: bind
+          # source: $ROOT_PATH/filebeat10/logs
+          # target: /usr/share/filebeat10/logs
+
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
+          target: /usr/share/filebeat/policy-create.sh
+
+        - type: bind
+          source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
+          target: /usr/share/filebeat/pattern-create.sh
+
+        - type: bind
+          source: $ROOT_PATH/$TENTH_CONTAINER_CONFIG
+          target: /usr/share/filebeat/filebeat.yml
+          
+        - type: bind
+          source: $ROOT_PATH/$TENTH_CONTAINER_LOGS
+          target: $CONTAINER_LOGS_DIR
+          read_only: true
+    command: >
+      sh -c "/usr/share/filebeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${TENTH_CONTAINER_SERVICE_NAME} $TENTH_CONTAINER_POLICY_HOT_SIZE $TENTH_CONTAINER_POLICY_HOT_TIME $TENTH_CONTAINER_POLICY_DELETE_AGE
+      && /usr/share/filebeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-logs-${TENTH_CONTAINER_SERVICE_NAME} $TENTH_CONTAINER_TIMESTAMP_FIELD
+      && filebeat --strict.perms=false"          
+    networks:
+      - beats
+      
+  filebeat11:
+    Image: Docker.Elastic.Co/Beats/Filebeat:$Elastic_Version
+    Container_Name: $Eleventh_Container
+    User: Root
+    Environment:
+      - ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST
+      - KIBANA_HOST=$KIBANA_HOST
+      - ELASTICSEARCH_USERNAME=$ELASTIC_USER
+      - ELASTICSEARCH_PASSWORD=$ELASTIC_PASSWORD
+      - CONTAINER_LOGS_DIR=$CONTAINER_LOGS_DIR/elk_logs/
+      - SERVICE_NAME=$ELEVENTH_CONTAINER_SERVICE_NAME
+      - LOGS_TO_FILE=$LOGS_TO_FILE
+      - ERROR_LEVEL=$ERROR_LEVEL
+      - STAGE_NAME=$STAGE_NAME
+    Volumes:
+          # - Type: Bind
+          # Source: $Root_Path/Filebeat11/Logs
+          # Target: /Usr/Share/Filebeat11/Logs
+
+        - Type: Bind
+          Source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
+          Target: /Usr/Share/Filebeat/Policy-Create.Sh
+
+        - Type: Bind
+          Source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
+          Target: /Usr/Share/Filebeat/Pattern-Create.Sh
+
+        - Type: Bind
+          Source: $ROOT_PATH/$ELEVENTH_CONTAINER_CONFIG
+          Target: /Usr/Share/Filebeat/Filebeat.Yml
+          
+        - Type: Bind
+          Source: $ROOT_PATH/$ELEVENTH_CONTAINER_LOGS
+          Target: $CONTAINER_LOGS_DIR
+          Read_Only: True
+    Command: >
+      Sh -C "/Usr/Share/Filebeat/Policy-Create.Sh $ELASTICSEARCH_HOST Magnum-${STAGE_NAME}-Logs-${ELEVENTH_CONTAINER_SERVICE_NAME} $ELEVENTH_CONTAINER_POLICY_HOT_SIZE $ELEVENTH_CONTAINER_POLICY_HOT_TIME $ELEVENTH_CONTAINER_POLICY_DELETE_AGE
+      && /Usr/Share/Filebeat/Pattern-Create.Sh $ELASTICSEARCH_HOST Magnum-${STAGE_NAME}-Logs-${ELEVENTH_CONTAINER_SERVICE_NAME} $ELEVENTH_CONTAINER_TIMESTAMP_FIELD
+      && Filebeat --Strict.Perms=False"          
+    Networks:
+      - Beats
+
+  # metricbeat:
+    # image: docker.elastic.co/beats/metricbeat:$ELASTIC_VERSION
+    # container_name: $METRICS_CONTAINER
+    # user: root
+    # environment:
+      # - ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST
+      # - KIBANA_HOST=$KIBANA_HOST
+      # - ELASTICSEARCH_USERNAME=$ELASTIC_USER
+      # - ELASTICSEARCH_PASSWORD=$ELASTIC_PASSWORD
+      # - LOGS_TO_FILE=$LOGS_TO_FILE
+      # - ERROR_LEVEL=$ERROR_LEVEL
+      # - STAGE_NAME=$STAGE_NAME
+      # - METRICS_HOST_NAME=$METRICS_HOST_NAME
+
+    # volumes:
+        # # - type: bind
+          # # source: $ROOT_PATH/metricbeat/logs
+          # # target: /usr/share/metricbeat/logs
+ 
+        # - type: bind
+          # source: $ROOT_PATH/$METRICBEAT_CONTAINER_CONFIG
+          # target: /usr/share/metricbeat/metricbeat.yml
+ 
+        # - type: bind
+          # source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
+          # target: /usr/share/metricbeat/policy-create.sh
+          
+        # - type: bind
+          # source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
+          # target: /usr/share/metricbeat/pattern-create.sh
+
+        # - type: bind
+          # source: /var/run/docker.sock
+          # target: /var/run/docker.sock
+          # read_only: true
+
+        # - type: bind
+          # source: /sys/fs/cgroup
+          # target: /hostfs/sys/fs/cgroup
+          # read_only: true
+          
+        # - type: bind
+          # source: /proc
+          # target: /hostfs/proc/self
+          # read_only: true   
+          
+        # - type: bind
+          # source: /
+          # target: /hostfs
+          # read_only: true
+    # command: > 
+      # sh -c "/usr/share/metricbeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-metrics $METRICBEAT_CONTAINER_POLICY_HOT_SIZE $METRICBEAT_CONTAINER_POLICY_HOT_TIME $METRICBEAT_CONTAINER_POLICY_DELETE_AGE
+      # && /usr/share/metricbeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-metrics $METRICBEAT_CONTAINER_TIMESTAMP_FIELD
+      # && metricbeat --strict.perms=false
+      # && metricbeat -system.hostfs=/hostfs"
+    # networks:
+      # - beats
+      
+  # heartbeat:
+    # image: docker.elastic.co/beats/heartbeat:$ELASTIC_VERSION
+    # container_name: $HEARTBEAT_CONTAINER
+    # user: root
+    # environment:
+      # - ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST
+      # - KIBANA_HOST=$KIBANA_HOST
+      # - ELASTICSEARCH_USERNAME=$ELASTIC_USER
+      # - ELASTICSEARCH_PASSWORD=$ELASTIC_PASSWORD
+      # - LOGS_TO_FILE=$LOGS_TO_FILE
+      # - ERROR_LEVEL=$ERROR_LEVEL
+      # - STAGE_NAME=$STAGE_NAME
+    # volumes:
+          # # - type: bind
+          # # source: $ROOT_PATH/heartbeat/logs
+          # # target: /usr/share/heartbeat/logs
+
+        # - type: bind
+          # source: $ROOT_PATH/$CONTAINER_POLICY_CREATES
+          # target: /usr/share/heartbeat/policy-create.sh
+
+        # - type: bind
+          # source: $ROOT_PATH/$CONTAINER_PATTERN_CREATES
+          # target: /usr/share/heartbeat/pattern-create.sh
+
+        # - type: bind
+          # source: $ROOT_PATH/$HEARTBEAT_CONTAINER_CONFIG
+          # target: /usr/share/heartbeat/heartbeat.yml
+    # command: >
+      # sh -c "/usr/share/heartbeat/policy-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-heartbeat $HEARTBEAT_CONTAINER_POLICY_HOT_SIZE $HEARTBEAT_CONTAINER_POLICY_HOT_TIME $HEARTBEAT_CONTAINER_POLICY_DELETE_AGE
+      # && /usr/share/heartbeat/pattern-create.sh $ELASTICSEARCH_HOST magnum-${STAGE_NAME}-heartbeat $HEARTBEAT_CONTAINER_TIMESTAMP_FIELD
+      # && heartbeat --strict.perms=false"
+    # networks:
+      # - beats
+          
+  # elastalert:
+    # image: ivankrizsan/elastalert:latest
+    # container_name: $ELASTALERT_CONTAINER
+    # user: root
+    # environment:
+      # - SET_CONTAINER_TIMEZONE=true
+      # - CONTAINER_TIMEZONE=Asia/Almaty
+      # - ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST_ONLY
+      # - ELASTICSEARCH_USER=$ELASTIC_USER
+      # - ELASTICSEARCH_PASSWORD=$ELASTIC_PASSWORD
+
+    # volumes:
+          # # - type: bind
+          # # source: $ROOT_PATH/$ELASTALERT_LOGS_DIR
+          # # target: /opt/logs
+
+        # - type: bind
+          # source: $ROOT_PATH/$ELASTALERT_CONFIGS_DIR
+          # target: /opt/config
+
+        # - type: bind
+          # source: $ROOT_PATH/$ELASTALERT_RULES_DIR
+          # target: /opt/rules
+    # networks:
+      # - beats
           
 networks:
   beats:
